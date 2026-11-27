@@ -1,0 +1,101 @@
+[
+  {
+    "id": "wangjianguo",
+    "name": "王建国 AI",
+    "tier": "human",
+    "price": 12,
+    "priceLabel": "¥12/天",
+    "recommended": true,
+    "duringMode": "ai",
+    "confirmBranch": "ai",
+    "avatar": "assets/guides/wangjianguo.jpg",
+    "matchScore": 98,
+    "rating": 4.9,
+    "serviceCount": 1240,
+    "tags": [
+      "建筑专家",
+      "故事大王",
+      "历史达人"
+    ],
+    "style": "专业深度 · 故事生动",
+    "specialties": [
+      "建筑摄影",
+      "历史讲解",
+      "材料演变",
+      "聚落布局"
+    ],
+    "bioFile": "guides/ai/wangjianguo-bio.txt"
+  },
+  {
+    "id": "chen-remote",
+    "name": "陈大嘴",
+    "tier": "human",
+    "price": 30,
+    "priceLabel": "¥30/天",
+    "avatar": "assets/guides/chen-remote.jpg",
+    "matchScore": 96,
+    "rating": 4.9,
+    "serviceCount": 860,
+    "tags": [
+      "金牌导游",
+      "诙谐灵魂",
+      "远程视频"
+    ],
+    "style": "脱口秀式讲解 · 建筑冷知识",
+    "specialties": [
+      "建筑结构",
+      "摄影机位",
+      "华侨八卦",
+      "远程视频"
+    ],
+    "bioFile": "guides/human/chen-remote-bio.txt"
+  },
+  {
+    "id": "huangjing",
+    "name": "黄静",
+    "tier": "human",
+    "price": 45,
+    "priceLabel": "¥45/天",
+    "avatar": "assets/guides/huangjing.jpg",
+    "matchScore": 91,
+    "rating": 4.8,
+    "serviceCount": 620,
+    "tags": [
+      "生活美学",
+      "本地通",
+      "慢节奏"
+    ],
+    "style": "温柔细腻 · 生活化叙事",
+    "specialties": [
+      "本地美食",
+      "咖啡探店",
+      "情侣拍照",
+      "古镇夜游"
+    ],
+    "bioFile": "guides/human/huangjing-bio.txt"
+  },
+  {
+    "id": "linbo",
+    "name": "林博",
+    "tier": "human",
+    "price": 35,
+    "priceLabel": "¥35/天",
+    "avatar": "assets/guides/linbo.jpg",
+    "matchScore": 85,
+    "rating": 4.7,
+    "serviceCount": 430,
+    "tags": [
+      "历史达人",
+      "性价比",
+      "远程连线"
+    ],
+    "style": "沉稳专业 · 史料扎实",
+    "specialties": [
+      "华侨历史",
+      "村落探访",
+      "口述史",
+      "建筑脉络"
+    ],
+    "bioFile": "guides/human/linbo-bio.txt"
+  }
+]

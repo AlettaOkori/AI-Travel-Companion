@@ -1,0 +1,101 @@
+[
+  {
+    "id": "wangjianguo",
+    "name": "王建国 AI",
+    "tier": "human",
+    "price": 12,
+    "priceLabel": "¥12/天",
+    "recommended": true,
+    "duringMode": "ai",
+    "confirmBranch": "ai",
+    "avatar": "assets/guides/wangjianguo.jpg",
+    "matchScore": 92,
+    "rating": 4.9,
+    "serviceCount": 1240,
+    "tags": [
+      "建筑专家",
+      "结构游戏",
+      "历史达人"
+    ],
+    "style": "积木比喻 · 建筑启蒙",
+    "specialties": [
+      "建筑启蒙",
+      "结构游戏",
+      "历史讲解",
+      "摄影入门"
+    ],
+    "bioFile": "guides/ai/wangjianguo-bio.txt"
+  },
+  {
+    "id": "chen-remote",
+    "name": "陈大嘴",
+    "tier": "human",
+    "price": 30,
+    "priceLabel": "¥30/天",
+    "avatar": "assets/guides/chen-remote.jpg",
+    "matchScore": 97,
+    "rating": 4.9,
+    "serviceCount": 860,
+    "tags": [
+      "金牌导游",
+      "诙谐灵魂",
+      "亲子互动"
+    ],
+    "style": "脱口秀式 · 任务卡讲解",
+    "specialties": [
+      "亲子互动",
+      "任务卡设计",
+      "远程视频",
+      "趣味历史"
+    ],
+    "bioFile": "guides/human/chen-remote-bio.txt"
+  },
+  {
+    "id": "huangjing",
+    "name": "黄静",
+    "tier": "human",
+    "price": 48,
+    "priceLabel": "¥48/天",
+    "avatar": "assets/guides/huangjing.jpg",
+    "matchScore": 93,
+    "rating": 4.8,
+    "serviceCount": 720,
+    "tags": [
+      "亲子专家",
+      "温柔耐心",
+      "本地通"
+    ],
+    "style": "温柔引导 · 儿童心理",
+    "specialties": [
+      "儿童故事",
+      "本地美食",
+      "亲子摄影",
+      "节奏把控"
+    ],
+    "bioFile": "guides/human/huangjing-bio.txt"
+  },
+  {
+    "id": "linbo",
+    "name": "林博",
+    "tier": "human",
+    "price": 38,
+    "priceLabel": "¥38/天",
+    "avatar": "assets/guides/linbo.jpg",
+    "matchScore": 88,
+    "rating": 4.7,
+    "serviceCount": 510,
+    "tags": [
+      "自然教育",
+      "性价比高",
+      "远程连线"
+    ],
+    "style": "田野研学 · 自然观察",
+    "specialties": [
+      "自然教育",
+      "植物观察",
+      "稻田研学",
+      "鸟类辨识"
+    ],
+    "bioFile": "guides/human/linbo-bio.txt"
+  }
+]

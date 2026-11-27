@@ -1,0 +1,122 @@
+[
+  {
+    "id": "chenyue",
+    "name": "陈月 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "recommended": true,
+    "avatar": "assets/guides/chenyue.jpg",
+    "matchScore": 98,
+    "rating": 4.8,
+    "serviceCount": 890,
+    "tags": [
+      "摄影师",
+      "光影魔术师",
+      "情侣出片"
+    ],
+    "style": "浪漫光影 · 构图引导",
+    "specialties": [
+      "情侣摄影",
+      "光影构图",
+      "日落机位",
+      "夜景长曝光"
+    ],
+    "bioFile": "guides/ai/chenyue-bio.txt"
+  },
+  {
+    "id": "zhangxiaoya",
+    "name": "张晓雅 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "avatar": "assets/guides/zhangxiaoya.jpg",
+    "matchScore": 95,
+    "rating": 4.8,
+    "serviceCount": 1560,
+    "tags": [
+      "美食家",
+      "生活家",
+      "本地通"
+    ],
+    "style": "轻松有趣 · 生活美学",
+    "specialties": [
+      "本地美食",
+      "咖啡探店",
+      "生活美学",
+      "古镇夜游"
+    ],
+    "bioFile": "guides/ai/zhangxiaoya-bio.txt"
+  },
+  {
+    "id": "liweimin",
+    "name": "李伟民 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "avatar": "assets/guides/liweimin.jpg",
+    "matchScore": 86,
+    "rating": 4.7,
+    "serviceCount": 2100,
+    "tags": [
+      "历史达人",
+      "华侨故事",
+      "口述史"
+    ],
+    "style": "娓娓道来 · 史料扎实",
+    "specialties": [
+      "华侨历史",
+      "口述史",
+      "村落探访",
+      "家谱溯源"
+    ],
+    "bioFile": "guides/ai/liweimin-bio.txt"
+  },
+  {
+    "id": "zhoumingxuan",
+    "name": "周明轩 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "avatar": "assets/guides/zhoumingxuan.jpg",
+    "matchScore": 80,
+    "rating": 4.7,
+    "serviceCount": 930,
+    "tags": [
+      "文化学者",
+      "艺术评论",
+      "策展人"
+    ],
+    "style": "思辨型 · 文化视角",
+    "specialties": [
+      "艺术评论",
+      "文化研究",
+      "展览导览",
+      "当代视角"
+    ],
+    "bioFile": "guides/ai/zhoumingxuan-bio.txt"
+  },
+  {
+    "id": "liuwenshan",
+    "name": "刘文山 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "avatar": "assets/guides/liuwenshan.jpg",
+    "matchScore": 72,
+    "rating": 4.6,
+    "serviceCount": 670,
+    "tags": [
+      "自然教育",
+      "植物专家"
+    ],
+    "style": "清新自然 · 田野观察",
+    "specialties": [
+      "自然教育",
+      "植物观察",
+      "生态摄影",
+      "竹林漫步"
+    ],
+    "bioFile": "guides/ai/liuwenshan-bio.txt"
+  }
+]

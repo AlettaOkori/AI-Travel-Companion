@@ -1,0 +1,5 @@
+{
+  "name": "c-end-kaiping",
+  "private": true,
+  "description": "华云天图 AI 旅伴 — 开平碉楼静态原型（KaipingTourism v2.6.10）。无构建步骤。QA 脚本见 ../../tools/qa/"
+}

@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>行前规划 · 交互演示（Android）</title>
+<style>
+  :root {
+    --bg: oklch(97% 0.004 250);
+    --bg-elevated: oklch(99% 0.002 250);
+    --surface: oklch(100% 0 0);
+    --surface-2: oklch(96% 0.006 250);
+    --surface-3: oklch(92% 0.008 250);
+    --fg: oklch(18% 0.025 250);
+    --fg-dim: oklch(34% 0.018 250);
+    --muted: oklch(46% 0.018 250);
+    --muted-2: oklch(56% 0.014 250);
+    --border: oklch(88% 0.008 250);
+    --border-strong: oklch(78% 0.012 250);
+    --accent: oklch(56% 0.20 255);
+    --accent-dim: oklch(56% 0.20 255 / 0.10);
+    --accent-glow: oklch(56% 0.20 255 / 0.25);
+    --accent-warm: oklch(56% 0.14 48);
+    --accent-warm-dim: oklch(56% 0.14 48 / 0.12);
+    --accent-warm-glow: oklch(56% 0.14 48 / 0.28);
+    --accent-warm-deep: oklch(40% 0.11 48);
+    --success: oklch(58% 0.16 145);
+    --success-dim: oklch(58% 0.16 145 / 0.12);
+    --font-display: -apple-system,BlinkMacSystemFont,'SF Pro Display','PingFang SC',system-ui,sans-serif;
+    --font-body: -apple-system,BlinkMacSystemFont,'SF Pro Text','PingFang SC',system-ui,sans-serif;
+    --font-mono: 'JetBrains Mono','SF Mono',ui-monospace,Menlo,monospace;
+    --font-serif: 'Songti SC','STSong','Source Han Serif CN','SimSun',Georgia,serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #e8e9ec; color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; height: 100%; }
+  body { display: flex; align-items: center; justify-content: center; padding: 20px; }
+
+  /* Android Pixel frame */
+  .android {
+    width: 412px; height: 900px; background: var(--surface); border-radius: 36px;
+    border: 1px solid #d4d5d9; position: relative; overflow: hidden;
+    box-shadow: 0 24px 60px -16px rgba(0,0,0,.12), 0 0 0 6px #f0f0f2;
+    user-select: none; -webkit-user-select: none;
+  }
+  .android::before { content: ''; position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #1a1a1a; border-radius: 50%; z-index: 50; }
+  .android::after { content: ''; position: absolute; top: 16px; left: calc(50% + 18px); width: 8px; height: 8px; background: #1a1a1a; border-radius: 50%; z-index: 50; opacity: .6; }
+  .status-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 48px;
+    padding: 12px 24px 0; display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-display); font-size: 14px; font-weight: 600; z-index: 40; pointer-events: none; color: var(--fg);
+  }
+  .nav-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 52px; background: var(--surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; z-index: 50; }
+  .nav-btn { width: 12px; height: 12px; border-radius: 50%; background: var(--fg); opacity: .25; }
+  .nav-btn.square { border-radius: 2px; width: 14px; height: 14px; }
+  .nav-btn.triangle { width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 14px solid var(--fg); opacity: .25; background: none; border-radius: 0; }
+  .screen { position: absolute; inset: 0; padding-top: 48px; padding-bottom: 52px; overflow: hidden; display: flex; flex-direction: column; }
+
+  .pretrip { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .pretrip header { padding: 10px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; background: var(--surface); }
+  .avatar-brand { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); background: var(--surface); }
+  .avatar-brand img { width: 100%; height: 100%; object-fit: cover; }
+  .head-meta { flex: 1; }
+  .head-meta b { font-size: 15px; font-weight: 600; display: block; }
+  .head-meta .tag { font-size: 10px; color: var(--accent); font-family: var(--font-mono); letter-spacing: 0.08em; }
+
+  .messages { flex: 1; overflow-y: auto; padding: 16px 16px 20px; display: flex; flex-direction: column; gap: 14px; scroll-behavior: smooth; cursor: pointer; }
+  .msg { max-width: 82%; padding: 12px 16px; border-radius: 18px; font-size: 14.5px; line-height: 1.6; box-shadow: 0 1px 2px rgba(0,0,0,.04); animation: msgIn .35s ease-out both; }
+  .msg.ai { background: var(--surface); color: var(--fg); border: 1px solid var(--border); border-top-left-radius: 6px; align-self: flex-start; }
+  .msg.user { background: var(--accent); color: #fff; border-top-right-radius: 6px; align-self: flex-end; font-weight: 500; }
+  .msg-meta { font-family: var(--font-mono); font-size: 10px; color: var(--muted-2); margin: 2px 8px 0; animation: fadeIn .3s ease .2s both; }
+  .typing { display: flex; gap: 4px; padding: 12px 16px; background: var(--surface); border-radius: 18px; border-top-left-radius: 6px; align-self: flex-start; border: 1px solid var(--border); box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--muted-2); animation: typing 1.4s infinite; }
+  .typing span:nth-child(2){animation-delay:.2s} .typing span:nth-child(3){animation-delay:.4s}
+  @keyframes typing { 0%,60%,100%{opacity:.3;transform:translateY(0)} 30%{opacity:1;transform:translateY(-3px)} }
+  @keyframes msgIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  .input-bar { padding: 10px 12px 10px; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: center; background: var(--surface); pointer-events: none; opacity: .6; }
+  .input-bar .mic { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface-2); display: grid; place-items: center; color: var(--fg-dim); flex-shrink: 0; }
+  .input-bar .box { flex: 1; background: var(--surface-2); border: 1px solid var(--border); border-radius: 24px; padding: 11px 18px; color: var(--muted); font-size: 14px; display: flex; align-items: center; gap: 6px; }
+  .input-bar .send { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; color: #fff; flex-shrink: 0; box-shadow: 0 2px 8px var(--accent-glow); }
+
+  .click-hint {
+    position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%);
+    padding: 8px 18px; background: rgba(0,0,0,.65); color: #fff; font-size: 13px;
+    border-radius: 20px; pointer-events: none; z-index: 30; white-space: nowrap;
+    animation: hintPulse 2s infinite; backdrop-filter: blur(8px);
+  }
+  @keyframes hintPulse { 0%,100%{opacity:.85} 50%{opacity:.45} }
+  .click-hint.hide { opacity: 0; transition: opacity .3s; }
+
+  /* Top checklist */
+  .top-checklist { display: none; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--border); flex-shrink: 0; animation: msgIn .4s ease-out both; }
+  .top-checklist.show { display: flex; }
+  .tc-item { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--fg-dim); transition: color .3s; }
+  .tc-item.done { color: var(--success); }
+  .tc-item.active { color: var(--accent); font-weight: 600; }
+  .tc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background .3s; }
+  .tc-item.done .tc-dot { background: var(--success); }
+  .tc-item.active .tc-dot { background: var(--accent); }
+  .tc-line { width: 16px; height: 1px; background: var(--border); }
+
+  /* Cards */
+  .check-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; max-width: 94%; align-self: flex-start; box-shadow: 0 2px 8px rgba(0,0,0,.04); animation: msgIn .4s ease-out both; }
+  .check-head { padding: 12px 16px; border-bottom: 1px solid var(--border); background: linear-gradient(90deg, var(--accent-dim), transparent); }
+  .check-head b { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .check-head b::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .check-body { padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--fg-dim); transition: color .3s, text-decoration .3s; }
+  .check-item.done { color: var(--muted); text-decoration: line-through; }
+  .check-item .cb { width: 18px; height: 18px; border-radius: 6px; border: 2px solid var(--border-strong); flex-shrink: 0; display: grid; place-items: center; font-size: 11px; color: #fff; transition: background .3s, border-color .3s; }
+  .check-item.done .cb { background: var(--success); border-color: var(--success); }
+  .check-item .cb::after { content: ''; }
+  .check-item.done .cb::after { content: '✓'; }
+
+  /* Image cards */
+  .img-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; max-width: 94%; align-self: flex-start; box-shadow: 0 2px 8px rgba(0,0,0,.04); animation: msgIn .4s ease-out both; }
+  .img-card img { width: 100%; display: block; }
+  .img-card .img-caption { padding: 10px 14px; font-size: 12px; color: var(--fg-dim); background: var(--bg-elevated); border-top: 1px solid var(--border); }
+
+  .hotel-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-width: 94%; align-self: flex-start; }
+  .hotel-gallery .hotel-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.04); animation: msgIn .4s ease-out both; }
+  .hotel-gallery .hotel-item img { width: 100%; height: 140px; object-fit: cover; display: block; }
+  .hotel-gallery .hotel-item .h-cap { padding: 8px 10px; font-size: 11px; color: var(--fg-dim); }
+  .hotel-gallery .hotel-item .h-cap b { display: block; font-size: 12px; color: var(--fg); margin-bottom: 2px; }
+
+  .rec-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; max-width: 94%; align-self: flex-start; box-shadow: 0 2px 8px rgba(0,0,0,.04); animation: msgIn .4s ease-out both; }
+  .rec-head { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .rec-head b { font-size: 14px; font-weight: 600; }
+  .rec-head span { font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
+  .rec-body { padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .rec-option { padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-elevated); }
+  .rec-option.on { border-color: var(--accent); background: var(--accent-dim); }
+  .rec-option .name { font-size: 14px; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
+  .rec-option .detail { font-size: 12px; color: var(--fg-dim); line-height: 1.5; }
+  .rec-option .badge { display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-family: var(--font-mono); background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
+  .rec-option.on .badge { background: var(--accent-dim); color: var(--accent); border-color: var(--accent-dim); }
+
+  .weather-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; max-width: 94%; align-self: flex-start; box-shadow: 0 2px 8px rgba(0,0,0,.04); animation: msgIn .4s ease-out both; }
+  .weather-head { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .weather-head b { font-size: 14px; font-weight: 600; }
+  .weather-body { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .w-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+  .w-row .day { color: var(--fg-dim); }
+  .w-row .cond { color: var(--fg); font-weight: 500; }
+  .w-row .temp { font-family: var(--font-mono); color: var(--accent); }
+  .w-tip { margin-top: 4px; padding: 10px; background: var(--bg-elevated); border-radius: 10px; font-size: 12px; color: var(--fg-dim); line-height: 1.5; }
+
+  .pack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pack-col { background: var(--bg-elevated); border-radius: 10px; padding: 10px; }
+  .pack-col b { font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.06em; display: block; margin-bottom: 6px; }
+  .pack-col ul { list-style: none; font-size: 12px; color: var(--fg-dim); line-height: 1.7; }
+
+  .itinerary { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; max-width: 96%; align-self: flex-start; box-shadow: 0 4px 16px rgba(0,0,0,.06); position: relative; animation: msgIn .5s ease-out both; }
+  .itinerary::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); }
+  .iti-head { padding: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .iti-head .brand-ico { width: 44px; height: 44px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+  .iti-head .brand-ico img { width: 100%; height: 100%; object-fit: cover; }
+  .iti-head .info { flex: 1; }
+  .iti-head .info b { font-size: 16px; font-weight: 600; display: block; }
+  .iti-head .info span { font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
+  .iti-body { padding: 14px 16px; }
+  .iti-sec { margin-bottom: 14px; }
+  .iti-sec:last-child { margin-bottom: 0; }
+  .iti-sec h5 { font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .iti-sec h5::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .iti-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--fg-dim); margin-bottom: 6px; }
+  .iti-row b { color: var(--fg); font-weight: 500; }
+  .iti-row .tag { padding: 2px 8px; border-radius: 6px; font-size: 11px; font-family: var(--font-mono); background: var(--accent-dim); color: var(--accent); }
+  .iti-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .iti-checks label { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--fg-dim); cursor: pointer; }
+  .iti-checks input { accent-color: var(--accent); }
+  .iti-foot { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+  .iti-foot button { flex: 1; padding: 10px; border-radius: 12px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .iti-foot .btn-primary { background: var(--accent); color: #fff; }
+  .iti-foot .btn-secondary { background: var(--surface-2); color: var(--fg); border: 1px solid var(--border); }
+
+  .scroll-hint { text-align: center; font-size: 11px; color: var(--muted-2); padding: 8px; font-family: var(--font-mono); letter-spacing: 0.06em; animation: fadeIn .5s ease both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="android" id="android">
+  <div class="status-bar"><span>9:41</span><span style="display:flex;gap:5px;align-items:center;"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="0.5"/><rect x="5" y="5" width="3" height="7" rx="0.5"/><rect x="10" y="2" width="3" height="10" rx="0.5"/><rect x="15" y="0" width="3" height="12" rx="0.5"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 0C4.5 0 1.5 1.5 0 4l1.5 1.5C2.5 3.5 5 2.5 8 2.5s5.5 1 6.5 3L16 4C14.5 1.5 11.5 0 8 0z"/><path d="M8 5c-2 0-3.5.8-4.5 2L5 8.5C5.5 7.5 6.5 7 8 7s2.5.5 3 1.5L12.5 7C11.5 5.8 10 5 8 5z"/><circle cx="8" cy="11" r="1"/></svg><svg width="27" height="13" viewBox="0 0 27 13" fill="currentColor"><rect x="0.5" y="0.5" width="21" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1"/><rect x="2" y="2" width="15" height="8" rx="1"/><rect x="22" y="4" width="2" height="4" rx="0.5"/></svg></span></div>
+  <div class="nav-bar">
+    <div class="nav-btn triangle"></div>
+    <div class="nav-btn square"></div>
+    <div class="nav-btn"></div>
+  </div>
+  <div class="screen">
+    <div class="pretrip">
+      <header>
+        <div class="avatar-brand"><img src="../assets/images/brand/ai_avatar.png" alt="AI 规划师" /></div>
+        <div class="head-meta"><b>小游 · 旅行专属定制师</b><span class="tag">AI · 已为 12,847 人规划行程</span></div>
+        <div style="font-size:20px;color:var(--muted);">􀍠</div>
+      </header>
+
+      <div class="top-checklist" id="topChecklist">
+        <div class="tc-item active" data-tc="0"><div class="tc-dot"></div><span>住宿</span></div>
+        <div class="tc-line"></div>
+        <div class="tc-item" data-tc="1"><div class="tc-dot"></div><span>交通</span></div>
+        <div class="tc-line"></div>
+        <div class="tc-item" data-tc="2"><div class="tc-dot"></div><span>门票</span></div>
+        <div class="tc-line"></div>
+        <div class="tc-item" data-tc="3"><div class="tc-dot"></div><span>行李</span></div>
+        <div class="tc-line"></div>
+        <div class="tc-item" data-tc="4"><div class="tc-dot"></div><span>确认</span></div>
+      </div>
+
+      <div class="messages" id="messages">
+        <!-- Messages injected by JS -->
+      </div>
+
+      <div class="click-hint" id="clickHint">点击屏幕继续</div>
+
+      <div class="input-bar">
+        <div class="mic">􀊰</div>
+        <div class="box">随时找我，24h 在线…</div>
+        <div class="send">􀈠</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const messagesEl = document.getElementById('messages');
+  const clickHint = document.getElementById('clickHint');
+  const topChecklist = document.getElementById('topChecklist');
+
+  let currentStep = 0;
+  let isAutoPlaying = false;
+  let typingEl = null;
+
+  // Conversation script — 同一 turn 的 AI 输出合并为一个 content
+  const script = [
+    // Step 0: Initial AI greeting (shown on load)
+    { type: 'ai', content: '你好呀～我是你的旅行专属定制师！🙋‍♀️<br><br>从路线规划、门票预订、交通住宿到行李清单，我都能帮你安排得妥妥当当的！<br><br>先告诉我，你想去哪里旅行呢？' },
+
+    // === Turn 1 ===
+    { type: 'user', content: '我想去开平碉楼' },
+    { type: 'ai', content: '好嘞！开平碉楼可是广东唯一的世界文化遗产，碉楼群 scattered 在稻田和村落之间，特别有电影感～🎬<br><br>给你快速划重点：<br>· <b>瑞石楼</b>——「开平第一楼」，9 层高，中西合璧的巅峰之作<br>· <b>立园</b>——华侨谢维立的私家花园，既有苏州园林的雅致，又有西洋喷泉的浪漫<br>· <b>赤坎古镇</b>——烟火气十足的骑楼老街，晚上灯光一亮超有氛围<br><br>作为你的旅行专属定制师，接下来我会一步步带你完成 <b>7 项出行准备</b>，确保你的旅程顺畅又省心～<br><br>咱们先从「住哪里」开始好不好？' },
+    { type: 'card', subtype: 'checklist' },
+
+    // === Turn 2 ===
+    { type: 'user', content: '好呀' },
+    { type: 'ai', content: '太棒了！先问下这次出行几个人呀？有没有小朋友？这样我可以帮你挑更合适的房型和床位～' },
+
+    // === Turn 3 ===
+    { type: 'user', content: '两大人带一小孩，小孩8岁' },
+    { type: 'ai', content: '了解！8 岁的小朋友正是好奇心旺盛的时候，开平碉楼对他来说是超棒的「活历史课堂」～<br><br>那我给你找有亲子友好设施的民宿，比如有露台可以看星星、或者离稻田近能观察农耕的。<br><br>接下来问你两个小问题：<br><br>1. 你打算哪天入住、住几晚呀？<br>2. 更想住<b>古镇里的特色民宿</b>（早上推开窗就是骑楼街），还是<b>景区附近的亲子酒店</b>（有家庭房、停车宽敞）？' },
+
+    // === Turn 4 ===
+    { type: 'user', content: '周五晚上到，住两晚，想住有特色一点的' },
+    { type: 'ai', content: '收到！那我重点给你看赤坎古镇周边两家高口碑民宿，都特别适合亲子家庭👇' },
+    { type: 'card', subtype: 'hotel' },
+    { type: 'ai', content: '我个人更推荐 <b>塘口·此间民宿</b>，虽然贵一点，但天台可以直接眺望自力村碉楼群，小朋友站在高处看碉楼，视野特别震撼。而且民宿主人是本地通，能给孩子讲很多碉楼背后的华侨故事，比导游词生动多了～<br><br>你觉得呢？需要我帮你先锁一间吗？' },
+
+    // === Turn 5 ===
+    { type: 'user', content: '选 B 吧' },
+    { type: 'ai', content: '好眼光！✨ 我帮你锁定 <b>塘口·此间民宿，周五/周六两晚</b>（家庭房，含儿童洗漱用品），保留 15 分钟。<br><br>订单号稍后一起汇总到行程卡里。<br><br>接下来咱们看「怎么去」～<br><br>你从哪里出发呀？高铁、飞机还是自驾？我可以直接帮你查实时班次和路况。' },
+
+    // === Turn 6 ===
+    { type: 'user', content: '从深圳出发，高铁方便吗？' },
+    { type: 'ai', content: '超方便！深圳北 → 开平南，每天 <b>6 趟车次</b>，我帮你看了下周五傍晚的：' },
+    { type: 'card', subtype: 'train' },
+    { type: 'ai', content: '建议你搭 <b>G6048</b>，到开平南后打车 20 分钟到赤坎古镇，刚好赶得上民宿入住（他们前台到 21:00）。<br><br>如果你需要，我还可以帮你预约开平南站的接站车（平台合作司机，<b>¥40 一口价</b>，比出租车省 ¥10，而且提供儿童安全座椅）。<br><br>需要我把这趟车加入行程吗？' },
+
+    // === Turn 7 ===
+    { type: 'user', content: '好的，加入吧' },
+    { type: 'ai', content: '搞定！🚄 <b>G6048 已标记</b>。<br><br>接站车也帮你预留了名额（含儿童安全座椅），出发前 2 小时会短信确认司机电话。<br><br>接下来是「门票」，这个我熟，帮你省点钱～<br><br>开平碉楼的景点比较分散，我给你拆一下：<br><br><b>必去核心区</b>（世界遗产地）：<br>· 自力村碉楼群（¥78）——《让子弹飞》取景地，最经典的碉楼聚落<br>· 立园（¥100）——私家园林+碉楼，值得慢慢逛 2 小时<br>· 马降龙碉楼群（¥60）——竹林掩映，游客少，适合拍照<br><br><b>我的省钱建议：</b><br>平台有「碉楼联票」，上面三个点 + 锦江里碉楼打包只要 <b>¥220</b>，比单买省 ¥68。而且联票 2 日内有效，可以分两天慢慢逛，不用赶。<br><br>另外赤坎古镇目前是 <b>免费</b> 的，晚上去逛最舒服～<br><br>需要我帮你订这套联票吗？' },
+
+    // === Turn 8 ===
+    { type: 'user', content: '订联票吧' },
+    { type: 'ai', content: '好嘞！<b>开平碉楼联票 ×1 份，¥220，已加入购物车</b>。<br><br>提醒一下：立园和自力村都需要<b>分时段预约</b>，我建议约周六上午 9:00-11:00 去自力村（光线好、人少），周日下午去立园。<br><br>时段我帮你标在后面的行程里了。<br><br>下一个超实用的——「景区人流预测」，帮你避开旅行团大军！<br><br>你计划周六、周日两天逛景区对吧？我调了平台的历史人流数据和本周预约趋势，给你做个「错峰指南」👇' },
+    { type: 'card', subtype: 'crowd' },
+    { type: 'ai', content: '按这个节奏，你的行程我会排成「早鸟 + 傍晚」模式，拍照不排队，体验感拉满～<br><br>接下来我帮你把每天的路线串起来！' },
+
+    // === Turn 9 ===
+    { type: 'user', content: '好，看看路线' },
+    { type: 'ai', content: '基于你「周五晚到、周日傍晚返程」的时间，我排了一个 <b>2.5 天亲子慢逛版</b> 路线，节奏很松，小朋友不会累：' },
+    { type: 'card', subtype: 'route' },
+    { type: 'ai', content: '这个节奏你觉得 OK 吗？有想调整的地方随时说，比如周日想多留半天去锦江里，或者周六中午想回民宿让小朋友睡个午觉？' },
+
+    // === Turn 10 ===
+    { type: 'user', content: '挺好的，就按这个来' },
+    { type: 'ai', content: '收到！路线已锁定～<br><br>接下来给你列「行李清单」，然后结合天气给你些穿衣提醒。<br><br>开平 5-6 月的天气我帮你查了：白天 28-32°C，闷热多雨，而且碉楼景区很多都是露天步行+楼梯 climb，我按亲子场景给你列：' },
+    { type: 'card', subtype: 'packing' },
+    { type: 'ai', content: '有缺什么我可以提醒你到民宿后附近哪里买～小朋友的驱蚊贴和防晒帽建议多备一份，古镇小店里不一定有合适的尺寸。' },
+
+    // === Turn 11 ===
+    { type: 'user', content: '没问题，继续' },
+    { type: 'ai', content: '最后给你个「天气预警 + 关怀包」👇' },
+    { type: 'card', subtype: 'weather' },
+    { type: 'ai', content: '另外，你的 <b>高铁票、民宿、接站车、联票</b> 我都已汇总好，等一下会生成一张「行程卡片」给你，包含所有确认号、地址、联系人，可以一键分享给同行朋友或家人。<br><br>还有什么不放心的吗？比如小朋友 dietary restrictions、或者想加购一份旅行意外险？' },
+
+    // === Turn 12 ===
+    { type: 'user', content: '没有了，谢谢' },
+    { type: 'ai', content: '不客气呀～祝小朋友在开平玩得开心，碉楼的夕阳和天台的晚风都在等你们！🌾<br><br>有任何突发状况，随时回来找我，24h 在线～<br><br>你的专属行程卡已生成！👇' },
+    { type: 'card', subtype: 'itinerary' },
+    { type: 'scroll-hint', content: '— 对话结束 · 24h 定制师在线支持 —' }
+  ];
+
+  function showTopChecklist() {
+    topChecklist.classList.add('show');
+  }
+
+  function setTopChecklistActive(index) {
+    const items = topChecklist.querySelectorAll('.tc-item');
+    items.forEach((item, i) => {
+      item.classList.toggle('active', i === index);
+      if (i < index) item.classList.add('done');
+    });
+  }
+
+  function setTopChecklistDone(index) {
+    const items = topChecklist.querySelectorAll('.tc-item');
+    if (items[index]) items[index].classList.add('done');
+  }
+
+  function scrollToBottom() {
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function showTyping() {
+    hideTyping();
+    typingEl = document.createElement('div');
+    typingEl.className = 'typing';
+    typingEl.innerHTML = '<span></span><span></span><span></span>';
+    messagesEl.appendChild(typingEl);
+    scrollToBottom();
+  }
+
+  function hideTyping() {
+    if (typingEl) {
+      typingEl.remove();
+      typingEl = null;
+    }
+  }
+
+  function appendMeta(time, alignEnd) {
+    const meta = document.createElement('div');
+    meta.className = 'msg-meta';
+    meta.textContent = time;
+    if (alignEnd) meta.style.alignSelf = 'flex-end';
+    messagesEl.appendChild(meta);
+  }
+
+  function renderAIMessage(content) {
+    const div = document.createElement('div');
+    div.className = 'msg ai';
+    div.innerHTML = content;
+    messagesEl.appendChild(div);
+    appendMeta('09:' + String(12 + Math.floor(currentStep / 3)).padStart(2, '0'));
+    scrollToBottom();
+  }
+
+  function renderUserMessage(content) {
+    const div = document.createElement('div');
+    div.className = 'msg user';
+    div.textContent = content;
+    messagesEl.appendChild(div);
+    appendMeta('09:' + String(12 + Math.floor(currentStep / 3)).padStart(2, '0'), true);
+    scrollToBottom();
+  }
+
+  function renderChecklist() {
+    const card = document.createElement('div');
+    card.className = 'check-card';
+    card.innerHTML = `
+      <div class="check-head"><b>7 项出行准备清单</b></div>
+      <div class="check-body">
+        <div class="check-item" data-chk="1"><div class="cb"></div><span>住宿规划</span></div>
+        <div class="check-item" data-chk="2"><div class="cb"></div><span>交通规划</span></div>
+        <div class="check-item" data-chk="3"><div class="cb"></div><span>门票预订</span></div>
+        <div class="check-item" data-chk="4"><div class="cb"></div><span>景区人流预测</span></div>
+        <div class="check-item" data-chk="5"><div class="cb"></div><span>行程路线</span></div>
+        <div class="check-item" data-chk="6"><div class="cb"></div><span>行李清单</span></div>
+        <div class="check-item" data-chk="7"><div class="cb"></div><span>天气提醒</span></div>
+      </div>`;
+    messagesEl.appendChild(card);
+    scrollToBottom();
+  }
+
+  function renderHotelCard() {
+    const wrap = document.createElement('div');
+    wrap.className = 'hotel-gallery';
+    wrap.innerHTML = `
+      <div class="hotel-item">
+        <img src="../assets/images/pretrip/住宿卡片1.jpg" alt="赤坎古镇·碉楼客栈" />
+        <div class="h-cap"><b>赤坎古镇·碉楼客栈</b>百年骑楼改造 · 花砖地板</div>
+      </div>
+      <div class="hotel-item">
+        <img src="../assets/images/pretrip/住宿卡片2.jpg" alt="塘口·此间民宿" />
+        <div class="h-cap"><b>塘口·此间民宿 ⭐推荐</b>天台观碉楼 · 亲子友好</div>
+      </div>`;
+    messagesEl.appendChild(wrap);
+    scrollToBottom();
+  }
+
+  function renderTrainCard() {
+    const card = document.createElement('div');
+    card.className = 'img-card';
+    card.innerHTML = `
+      <img src="../assets/images/pretrip/高铁深圳-开平.jpg" alt="深圳北-开平南高铁" />
+      <div class="img-caption">🚄 G6048 · 深圳北 17:38 → 开平南 20:23 · 二等座 ¥162 · 余票充足</div>`;
+    messagesEl.appendChild(card);
+    scrollToBottom();
+  }
+
+  function renderCrowdCard() {
+    const card = document.createElement('div');
+    card.className = 'weather-card';
+    card.innerHTML = `
+      <div class="weather-head"><b>📊 景区人流预测</b></div>
+      <div class="weather-body">
+        <div class="w-row"><span class="day">周六 · 自力村</span><span class="cond">10:00-12:00 高峰</span><span class="temp">800+人/h</span></div>
+        <div class="w-tip">💡 <b>建议 8:30 开园就进</b>，或者下午 15:00 后去，人流降到 200 人/小时以下</div>
+        <div class="w-row"><span class="day">周日 · 立园</span><span class="cond">14:00-16:00 最挤</span><span class="temp">600+人/h</span></div>
+        <div class="w-tip">💡 <b>建议上午 9:00-11:00 去</b>，或者傍晚 17:00 前（还能看夕阳下的园林）</div>
+        <div class="w-row"><span class="day">马降龙 & 锦江里</span><span class="cond">全天低人流</span><span class="temp">&lt;150人/h</span></div>
+        <div class="w-tip">💡 位置偏，随时去都行，竹林里特别安静🎋</div>
+      </div>`;
+    messagesEl.appendChild(card);
+    scrollToBottom();
+  }
+
+  function renderRouteCard() {
+    const card = document.createElement('div');
+    card.className = 'img-card';
+    card.innerHTML = `
+      <img src="../assets/images/pretrip/路线-亲子家庭一日游.jpg" alt="亲子家庭一日游路线" style="max-height:280px;object-fit:cover;object-position:top;" />
+      <div class="img-caption">📍 亲子慢逛版 · 2.5 天 · 周五晚抵达 - 周日晚返程</div>`;
+    messagesEl.appendChild(card);
+    scrollToBottom();
+  }
+
+  function renderPackingCard() {
+    const card = document.createElement('div');
+    card.className = 'rec-card';
+    card.innerHTML = `
+      <div class="rec-head"><b>🎒 亲子行李清单</b> <span>结合天气 & 场景</span></div>
+      <div class="rec-body">
+        <div class="pack-grid">
+          <div class="pack-col">
+            <b>👕 穿搭</b>
+            <ul>
+              <li>轻薄透气长袖 ×2</li>
+              <li>速干长裤/长裙 ×1</li>
+              <li>舒适运动鞋</li>
+              <li>遮阳帽 + 墨镜</li>
+            </ul>
+          </div>
+          <div class="pack-col">
+            <b>🎒 实用</b>
+            <ul>
+              <li>小瓶驱蚊液</li>
+              <li>便携雨伞/雨衣</li>
+              <li>充电宝</li>
+              <li>小背包</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:8px;padding:10px;background:var(--bg-elevated);border-radius:10px;font-size:12px;color:var(--fg-dim);line-height:1.5;">
+          <b>👶 亲子专属：</b>儿童驱蚊贴、防晒帽、小风扇、便携零食、湿巾；<b>📷 加分项：</b>相机/手机广角（碉楼仰拍超震撼）
+        </div>
+      </div>`;
+    messagesEl.appendChild(card);
+    scrollToBottom();
+  }
+
+  function renderWeatherCard() {
+    const card = document.createElement('div');
+    card.className = 'weather-card';
+    card.innerHTML = `
+      <div class="weather-head"><b>🌤️ 本周末开平天气</b></div>
+      <div class="weather-body">
+        <div class="w-row"><span class="day">周六</span><span class="cond">多云，26-31°C</span><span class="temp">午后短时阵雨</span></div>
+        <div class="w-row"><span class="day">周日</span><span class="cond">阴天，25-30°C</span><span class="temp">凉爽舒适</span></div>
+        <div class="w-tip">⚠️ <b>平台特别提醒：</b>赤坎古镇部分石板路雨后湿滑，小朋友建议穿防滑鞋。若遇暴雨预警，立园 indoor 展馆多，可随时调整 indoors。</div>
+      </div>`;
+    messagesEl.appendChild(card);
+    scrollToBottom();
+  }
+
+  function renderItineraryCard() {
+    const card = document.createElement('div');
+    card.className = 'itinerary';
+    card.innerHTML = `
+      <div class="iti-head">
+        <div class="brand-ico"><img src="../assets/images/brand/ai_avatar.png" alt="华云天图" /></div>
+        <div class="info"><b>🧳 开平碉楼 · 2.5 天亲子定制行程卡</b><span>定制师：小游 | 生成时间：2026/05/30</span></div>
+      </div>
+      <div class="iti-body">
+        <div class="iti-sec">
+          <h5>住宿</h5>
+          <div class="iti-row"><span>塘口·此间民宿（亲子天台景观房）</span><b>¥520/晚 × 2晚</b></div>
+          <div class="iti-row"><span>05/30 入住 - 06/01 退房 | 含儿童洗漱用品</span><span class="tag">已锁定</span></div>
+          <div class="iti-row"><span>地址：开平市塘口镇强亚村</span><span></span></div>
+        </div>
+        <div class="iti-sec">
+          <h5>交通</h5>
+          <div class="iti-row"><span>去程 G6048</span><b>深圳北 17:38 → 开平南 20:23</b></div>
+          <div class="iti-row"><span>返程 G6047</span><b>开平南 18:05 → 深圳北 20:42</b></div>
+          <div class="iti-row"><span>接站车</span><span class="tag">¥40 一口价 · 含儿童座椅</span></div>
+        </div>
+        <div class="iti-sec">
+          <h5>门票</h5>
+          <div class="iti-row"><span>开平碉楼联票 ×2 大 1 小</span><b>¥220 · 2 日有效</b></div>
+          <div class="iti-row"><span>含：自力村 + 立园 + 马降龙 + 锦江里</span><span class="tag">已预约</span></div>
+          <div class="iti-row"><span>小孩 8 岁免门票（1.2m 以下）</span><span class="tag">已确认</span></div>
+        </div>
+        <div class="iti-sec">
+          <h5>每日路线</h5>
+          <div class="iti-row"><span>Day1 周五</span><b>抵达 → 民宿 → 天台夜景</b></div>
+          <div class="iti-row"><span>Day2 周六</span><b>自力村(早) → 午休 → 马降龙 → 赤坎夜游</b></div>
+          <div class="iti-row"><span>Day3 周日</span><b>立园(早) → 古镇午餐 → 返程</b></div>
+        </div>
+        <div class="iti-sec">
+          <h5>天气备忘</h5>
+          <div class="iti-row"><span>周六 26-31°C 多云有阵雨</span><b>带伞+防晒</b></div>
+          <div class="iti-row"><span>周日 25-30°C 阴天凉爽</span><b>舒适出行</b></div>
+        </div>
+        <div class="iti-sec">
+          <h5>行前备忘</h5>
+          <div class="iti-checks">
+            <label><input type="checkbox" /> 身份证</label>
+            <label><input type="checkbox" /> 驱蚊液/贴</label>
+            <label><input type="checkbox" /> 运动鞋</label>
+            <label><input type="checkbox" /> 雨伞</label>
+            <label><input type="checkbox" /> 充电宝</label>
+            <label><input type="checkbox" /> 相机/广角</label>
+            <label><input type="checkbox" /> 儿童防晒帽</label>
+            <label><input type="checkbox" /> 便携零食</label>
+          </div>
+        </div>
+      </div>
+      <div class="iti-foot">
+        <button class="btn-secondary">一键分享</button>
+        <button class="btn-primary">导出 PDF</button>
+      </div>`;
+    messagesEl.appendChild(card);
+    scrollToBottom();
+  }
+
+  function renderCard(subtype) {
+    switch (subtype) {
+      case 'checklist': renderChecklist(); break;
+      case 'hotel': renderHotelCard(); break;
+      case 'train': renderTrainCard(); break;
+      case 'crowd': renderCrowdCard(); break;
+      case 'route': renderRouteCard(); break;
+      case 'packing': renderPackingCard(); break;
+      case 'weather': renderWeatherCard(); break;
+      case 'itinerary': renderItineraryCard(); break;
+    }
+  }
+
+  function tickChecklist(index) {
+    const items = messagesEl.querySelectorAll('.check-item');
+    if (items[index]) items[index].classList.add('done');
+  }
+
+  function renderStep(index) {
+    const item = script[index];
+    if (!item) return false;
+
+    if (item.type === 'ai') {
+      renderAIMessage(item.content);
+      return true;
+    }
+    if (item.type === 'user') {
+      renderUserMessage(item.content);
+      return true;
+    }
+    if (item.type === 'card') {
+      renderCard(item.subtype);
+      return true;
+    }
+    if (item.type === 'scroll-hint') {
+      const div = document.createElement('div');
+      div.className = 'scroll-hint';
+      div.textContent = item.content;
+      messagesEl.appendChild(div);
+      scrollToBottom();
+      return true;
+    }
+    return false;
+  }
+
+  async function autoAdvance() {
+    if (isAutoPlaying) return;
+    isAutoPlaying = true;
+    clickHint.classList.add('hide');
+
+    while (currentStep < script.length - 1) {
+      const next = script[currentStep + 1];
+
+      if (next.type === 'user') {
+        break;
+      }
+
+      if (next.type === 'ai') {
+        showTyping();
+        await delay(900 + Math.random() * 600);
+        hideTyping();
+      }
+
+      currentStep++;
+      renderStep(currentStep);
+
+      // Top checklist state updates (tuned for new script)
+      if (currentStep === 5) { showTopChecklist(); setTopChecklistActive(0); }
+      if (currentStep === 13) { setTopChecklistDone(0); setTopChecklistActive(1); }
+      if (currentStep === 19) { setTopChecklistDone(1); setTopChecklistActive(2); }
+      if (currentStep === 23) { setTopChecklistDone(2); setTopChecklistActive(3); }
+      if (currentStep === 33) { setTopChecklistDone(3); setTopChecklistActive(4); }
+      if (currentStep === 39) { setTopChecklistDone(4); }
+
+      if (script[currentStep + 1] && script[currentStep + 1].type !== 'user') {
+        await delay(400);
+      }
+    }
+
+    isAutoPlaying = false;
+
+    if (currentStep < script.length - 1) {
+      clickHint.classList.remove('hide');
+    } else {
+      clickHint.textContent = '演示结束';
+      clickHint.classList.remove('hide');
+    }
+  }
+
+  function delay(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  async function onClick() {
+    if (isAutoPlaying) return;
+    if (currentStep >= script.length - 1) return;
+
+    const next = script[currentStep + 1];
+    if (next.type !== 'user') return;
+
+    clickHint.classList.add('hide');
+
+    currentStep++;
+    renderStep(currentStep);
+
+    await delay(300);
+    autoAdvance();
+  }
+
+  // Init
+  renderStep(0);
+  messagesEl.addEventListener('click', onClick);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.code === 'Space' || e.code === 'Enter' || e.code === 'ArrowRight') {
+      e.preventDefault();
+      onClick();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

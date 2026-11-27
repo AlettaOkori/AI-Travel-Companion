@@ -1,0 +1,401 @@
+[
+  {
+    "sender": "ai",
+    "time": "09:15",
+    "textFile": "during/zhang/000-张先生早我是您今天二十四小时待命没有.txt"
+  },
+  {
+    "sender": "system",
+    "time": "09:16",
+    "textFile": "during/zhang/001--定位到已抵达龙胜楼-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:16",
+    "textFile": "during/zhang/002-对了识别到你们是情侣慢游附近有几处.txt"
+  },
+  {
+    "sender": "ai",
+    "text": "",
+    "facilityStop": "zili",
+    "time": "09:16"
+  },
+  {
+    "sender": "ai",
+    "time": "09:16",
+    "textFile": "during/zhang/004-这就是龙胜楼自力村的门面担当当年.txt"
+  },
+  {
+    "sender": "user",
+    "time": "09:16",
+    "textFile": "during/zhang/005-这是什么意思.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:16",
+    "textFile": "during/zhang/006-意思就是那时候没有微信没有-CAD.txt"
+  },
+  {
+    "sender": "user",
+    "time": "09:17",
+    "textFile": "during/zhang/007-原来如此.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:17",
+    "textFile": "during/zhang/008-结构和理论您肯定是专家我就跟您聊聊只有.txt",
+    "htmlFile": "during/zhang/003-html.txt"
+  },
+  {
+    "sender": "user",
+    "time": "09:19",
+    "textFile": "during/zhang/009-好.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:20",
+    "textFile": "during/zhang/010-您看这个布局三座楼互为犄角龙胜楼守正.txt"
+  },
+  {
+    "sender": "user",
+    "time": "09:21",
+    "textFile": "during/zhang/011-天这太讲究了而且我发现这些楼用的材.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:21",
+    "textFile": "during/zhang/012-眼光毒辣当年可没有统一的供应链这地方.txt"
+  },
+  {
+    "sender": "user",
+    "time": "09:22",
+    "textFile": "during/zhang/013-这材料来源太复杂了.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:23",
+    "textFile": "during/zhang/014-建材硬核也就罢了最精彩的是当年的审美.txt",
+    "htmlFile": "during/zhang/006-html.txt"
+  },
+  {
+    "sender": "user",
+    "time": "09:24",
+    "textFile": "during/zhang/015-这种本土化改造很有意思.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:25",
+    "textFile": "during/zhang/016-确实比教科书上的中西合璧生动多了.txt",
+    "bookmark": "zili-coffee"
+  },
+  {
+    "sender": "user",
+    "time": "09:25",
+    "textFile": "during/zhang/017-哦为什么这样设计.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:26",
+    "textFile": "during/zhang/018-实不相瞒有个文保专家开玩笑说这防的.txt",
+    "htmlFile": "during/zhang/018-html.txt"
+  },
+  {
+    "sender": "user",
+    "time": "09:27",
+    "textFile": "during/zhang/019-这些细节很难在书上看到.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:29",
+    "textFile": "during/zhang/020-所以碉楼其实就是大型民间社交活化石大致.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:30",
+    "textFile": "during/zhang/021-到铭石楼楼顶了-您看这个视野整个村.txt"
+  },
+  {
+    "sender": "system",
+    "time": "09:31",
+    "textFile": "during/zhang/022--张先生已前往铭石楼-.txt"
+  },
+  {
+    "sender": "system",
+    "time": "09:32",
+    "textFile": "during/zhang/023--张先生已抵达铭石楼楼顶-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:32",
+    "textFile": "during/zhang/024-您瞧这穹顶前几年修缮的时候专家们差点.txt"
+  },
+  {
+    "sender": "user",
+    "time": "09:33",
+    "textFile": "during/zhang/025-我觉得应该保留.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:34",
+    "textFile": "during/zhang/026-专家最后也决定放过这-3-厘米当年.txt"
+  },
+  {
+    "sender": "user",
+    "time": "09:35",
+    "textFile": "during/zhang/027-修旧如旧嘛.txt"
+  },
+  {
+    "sender": "system",
+    "time": "11:30",
+    "textFile": "during/zhang/028--离开自力村前往碉楼人家农庄-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "11:32",
+    "textFile": "during/zhang/029-咱们去碉楼人家农庄过个秤吃午饭-.txt"
+  },
+  {
+    "sender": "user",
+    "time": "11:33",
+    "textFile": "during/zhang/030-你这么一说我才注意到还真是为什么啊.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "11:34",
+    "textFile": "during/zhang/031-这可不是设计师偷懒是本地老祖宗的风水微.txt",
+    "htmlFile": "during/zhang/031-html.txt"
+  },
+  {
+    "sender": "system",
+    "time": "11:45",
+    "textFile": "during/zhang/032--已抵达碉楼人家农庄-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "11:46",
+    "textFile": "during/zhang/033-看这院子脚下踩的青砖都是旧碉楼拆下来的.txt"
+  },
+  {
+    "sender": "user",
+    "time": "11:47",
+    "textFile": "during/zhang/034-嗯质感确实不一样.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "11:48",
+    "textFile": "during/zhang/035-今天中午给您安排了本地的黄鳝饭和豆腐角.txt"
+  },
+  {
+    "sender": "system",
+    "time": "12:30",
+    "textFile": "during/zhang/036--午餐休整中-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "13:10",
+    "textFile": "during/zhang/037-这家农庄老板的爷爷就是当年给铭石楼做木.txt"
+  },
+  {
+    "sender": "user",
+    "time": "13:11",
+    "textFile": "during/zhang/038-哇这也太有渊源了.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "13:12",
+    "textFile": "during/zhang/039-下午咱们去立园和自力村的防御风格完全不.txt"
+  },
+  {
+    "sender": "user",
+    "time": "13:13",
+    "textFile": "during/zhang/040-逛了一上午我想发个朋友圈帮我想个文案.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "13:14",
+    "textFile": "during/zhang/041-给您拟了一段简洁有画面感-站了一.txt"
+  },
+  {
+    "sender": "system",
+    "time": "13:30",
+    "textFile": "during/zhang/042--已抵达立园-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "13:30",
+    "textFile": "during/zhang/043-逛完园林腿有点酸很正常附近有家露台咖啡.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "13:32",
+    "textFile": "during/zhang/045-到立园了如果说自力村是穿防弹衣的硬汉.txt"
+  },
+  {
+    "sender": "user",
+    "time": "13:33",
+    "textFile": "during/zhang/046-你不说我都没察觉确实慢下来了.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "13:35",
+    "textFile": "during/zhang/047-大数据不骗人游客到这步速平均慢-30.txt",
+    "htmlFile": "during/zhang/047-html.txt"
+  },
+  {
+    "sender": "user",
+    "time": "13:36",
+    "textFile": "during/zhang/048-这个动线设计确实绝.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "13:42",
+    "textFile": "during/zhang/049-别墅内部更是大型野生混搭现场先问您.txt"
+  },
+  {
+    "sender": "user",
+    "time": "13:43",
+    "textFile": "during/zhang/050-还真没见过这种组合.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "13:46",
+    "textFile": "during/zhang/051-在这儿就能见到您看这个客厅地面铺的是.txt"
+  },
+  {
+    "sender": "user",
+    "time": "13:47",
+    "textFile": "during/zhang/052-这种结合非常自然没有违和感.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "13:55",
+    "textFile": "during/zhang/053-再跟您爆个料去年从二楼书房地板下刨出了.txt",
+    "htmlFile": "during/zhang/053-html.txt"
+  },
+  {
+    "sender": "user",
+    "time": "13:57",
+    "textFile": "during/zhang/054-有点遗憾但也因此更真实了.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:10",
+    "textFile": "during/zhang/055-是啊这个空水池反而成了立园最有分量的一.txt"
+  },
+  {
+    "sender": "user",
+    "time": "14:12",
+    "textFile": "during/zhang/056-说得对.txt"
+  },
+  {
+    "sender": "system",
+    "time": "14:40",
+    "textFile": "during/zhang/057--已抵达马降龙碉楼群-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:40",
+    "textFile": "during/zhang/058-竹林这段路风景好想轻松一点可以租辆双人.txt"
+  },
+  {
+    "sender": "ai",
+    "text": "",
+    "facilityStop": "maganglong",
+    "time": "14:40"
+  },
+  {
+    "sender": "ai",
+    "time": "14:40",
+    "textFile": "during/zhang/060-最后一站马降龙咱们赶得巧竹林刚除完.txt"
+  },
+  {
+    "sender": "user",
+    "time": "14:41",
+    "textFile": "during/zhang/061-还真没有这也太特别了.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:42",
+    "textFile": "during/zhang/062-这-13-座楼全长在天然高地上刚好冒出.txt"
+  },
+  {
+    "sender": "user",
+    "time": "14:43",
+    "textFile": "during/zhang/063-为了隐蔽同时不影响瞭望.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:43",
+    "textFile": "during/zhang/064-没错而且这里是当年土匪从台山到开平的必.txt"
+  },
+  {
+    "sender": "user",
+    "time": "14:44",
+    "textFile": "during/zhang/065-这个设计太聪明了.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:45",
+    "textFile": "during/zhang/066-带您看看马降龙的顶流骏庐密道开.txt"
+  },
+  {
+    "sender": "user",
+    "time": "14:46",
+    "textFile": "during/zhang/067-难怪看着这么协调.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:46",
+    "textFile": "during/zhang/068-门是防弹级别的外层铁板内层实木门顶.txt"
+  },
+  {
+    "sender": "user",
+    "time": "14:47",
+    "textFile": "during/zhang/069-和自力村的反差特别大.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:48",
+    "textFile": "during/zhang/070-马降龙的楼没什么花里胡哨的浮雕最多在窗.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:52",
+    "textFile": "during/zhang/071-钱都花在刀刃上这种朴素的实用主义反而.txt"
+  },
+  {
+    "sender": "user",
+    "time": "14:54",
+    "textFile": "during/zhang/072-同意.txt"
+  },
+  {
+    "sender": "system",
+    "time": "16:00",
+    "textFile": "during/zhang/073--行程结束今日导览已完成-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "16:00",
+    "textFile": "during/zhang/074-今天的开平暴走深度游到此圆满结束虽.txt"
+  },
+  {
+    "sender": "user",
+    "time": "16:01",
+    "textFile": "during/zhang/075-我觉得是这些建筑里藏着的人的故事.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "16:02",
+    "textFile": "during/zhang/076-您说到点子上了剥离掉世界文化遗产的.txt"
+  },
+  {
+    "sender": "user",
+    "time": "16:03",
+    "textFile": "during/zhang/077-今天收获很大比看资料直观多了.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "16:04",
+    "textFile": "during/zhang/078-能让您这位专业人士觉得不虚此行我今晚的.txt"
+  }
+]

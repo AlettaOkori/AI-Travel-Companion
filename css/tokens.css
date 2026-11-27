@@ -1,0 +1,87 @@
+/* ========================================
+   华云天图 AI 旅伴 — Design Tokens
+   Light theme · v2 palette
+   ======================================== */
+:root {
+  /* Backgrounds */
+  --bg:            oklch(97% 0.004 250);
+  --bg-elevated:   oklch(99% 0.002 250);
+  --surface:       oklch(100% 0 0);
+  --surface-2:     oklch(96% 0.006 250);
+  --surface-3:     oklch(92% 0.008 250);
+
+  /* Text */
+  --fg:            oklch(18% 0.025 250);
+  --fg-dim:        oklch(36% 0.018 250);
+  --muted:         oklch(50% 0.018 250);
+  --muted-2:       oklch(64% 0.012 250);
+
+  /* Borders */
+  --border:        oklch(88% 0.008 250);
+  --border-strong: oklch(78% 0.012 250);
+
+  /* Accent — cobalt AI */
+  --accent:        oklch(56% 0.20 255);
+  --accent-dim:    oklch(56% 0.20 255 / 0.10);
+  --accent-glow:   oklch(56% 0.20 255 / 0.25);
+
+  /* Accent — warm amber / culture */
+  --accent-warm:        oklch(58% 0.16 60);
+  --accent-warm-dim:    oklch(58% 0.16 60 / 0.12);
+  --accent-warm-glow:   oklch(58% 0.16 60 / 0.28);
+
+  /* Status */
+  --success:       oklch(58% 0.18 145);
+  --success-dim:   oklch(58% 0.18 145 / 0.12);
+  --warn:          oklch(72% 0.16 75);
+  --danger:        oklch(58% 0.20 25);
+
+  /* Typography scale */
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-15: 15px;
+  --fs-16: 16px;
+  --fs-17: 17px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-22: 22px;
+  --fs-24: 24px;
+  --fs-26: 26px;
+  --fs-28: 28px;
+
+  /* Font stacks */
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif;
+  --font-body:    -apple-system, BlinkMacSystemFont, 'SF Pro Text',  'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+  --font-serif:   'Songti SC', 'STSong', 'Source Han Serif CN', Georgia, serif;
+
+  /* Spacing */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+
+  /* Radius */
+  --r-1: 6px;
+  --r-2: 8px;
+  --r-3: 10px;
+  --r-4: 12px;
+  --r-5: 14px;
+  --r-6: 16px;
+  --r-7: 18px;
+  --r-8: 20px;
+  --r-9: 24px;
+  --r-full: 999px;
+
+  /* Shadows */
+  --shadow-sm:     0 1px 2px oklch(18% 0.02 250 / 0.04);
+  --shadow-md:     0 4px 12px oklch(18% 0.02 250 / 0.08);
+  --shadow-lg:     0 12px 40px oklch(18% 0.02 250 / 0.12);
+  --shadow-accent: 0 2px 12px oklch(56% 0.20 255 / 0.20);
+}

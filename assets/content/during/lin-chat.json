@@ -1,0 +1,369 @@
+[
+  {
+    "sender": "system",
+    "time": "20:45",
+    "textFile": "during/lin/000--第一晚--民宿天台-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "20:45",
+    "textFile": "during/lin/001-林女士乐乐晚上好呀我是你们的专属导.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "20:46",
+    "textFile": "during/lin/002-还好不算累就是孩子一直问明天要去哪玩.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "20:46",
+    "textFile": "during/lin/003-太懂啦小朋友对新地方都充满好奇刚好咱.txt"
+  },
+  {
+    "sender": "ai",
+    "text": "",
+    "time": "20:47",
+    "htmlFile": "during/lin/004-html.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "20:47",
+    "textFile": "during/lin/005-乐乐快看第一张卡稻田城堡侦查任务.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "20:48",
+    "textFile": "during/lin/006-瞭望小阳台是用来干什么的呀.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "20:48",
+    "textFile": "during/lin/007-是以前保护家人的安全小岗亭哦超厉害的.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "20:49",
+    "textFile": "during/lin/008-竹林里的碉楼我最喜欢躲猫猫啦.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "20:49",
+    "textFile": "during/lin/009-没错最后这张最惊喜-古镇星光打卡.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "20:50",
+    "textFile": "during/lin/010-哇我要全部找到我要当碉楼小勇士.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "20:51",
+    "textFile": "during/lin/011-那乐乐今晚要乖乖早点睡觉养足精神明天.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "20:52",
+    "textFile": "during/lin/012-太好了有你安排我们放心多了.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "20:53",
+    "textFile": "during/lin/013-应该的那你们慢慢在天台吹吹风早点休息.txt"
+  },
+  {
+    "sender": "system",
+    "location": "自力村",
+    "time": "09:00",
+    "textFile": "during/lin/014--第二天上午--已抵达自力村碉楼群-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:00",
+    "textFile": "during/lin/015-林女士上午太阳渐强我先给您标几处适合.txt"
+  },
+  {
+    "sender": "ai",
+    "text": "",
+    "facilityStop": "zili",
+    "time": "09:00"
+  },
+  {
+    "sender": "ai",
+    "time": "09:00",
+    "textFile": "during/lin/017-到啦林女士乐乐咱们现在站的地方就是.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "09:01",
+    "textFile": "during/lin/018-乐乐听雅芳姐姐讲这些楼站的位置有讲究.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:02",
+    "textFile": "during/lin/019-乐乐你看咱们面前这座叫龙胜楼它站在村.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "09:02",
+    "textFile": "during/lin/020-它们是好朋友吗.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:03",
+    "textFile": "during/lin/021-哈哈对它们就是保护村子的铁三角好.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "09:04",
+    "textFile": "during/lin/022-这些材料混在一起还挺有意思的.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:04",
+    "textFile": "during/lin/023-是啊林女士而且开平这边有个特别有意思的.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "09:05",
+    "textFile": "during/lin/024-乐乐别跑太远快回来.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "09:05",
+    "textFile": "during/lin/025-妈妈我在追蝴蝶它的翅膀是蓝色的.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:06",
+    "textFile": "during/lin/026-哇蓝翅膀的蝴蝶乐乐眼光真好那种蝴蝶.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "09:06",
+    "textFile": "during/lin/027-有好多小洞洞.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:07",
+    "textFile": "during/lin/028-那些是枪眼就是以前的人保护自己用的就.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "09:08",
+    "textFile": "during/lin/029-这个细节太有意思了是活的乡村社会史.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:08",
+    "textFile": "during/lin/030-咱们再往前走一点乐乐你刚才跑过去追蝴.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "09:09",
+    "textFile": "during/lin/031-好像有像云朵一样.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:09",
+    "textFile": "during/lin/032-乐乐眼睛真尖那个花纹本来叫希腊回纹.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "09:10",
+    "textFile": "during/lin/033-这不是照搬是再创造啊.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:11",
+    "textFile": "during/lin/034-对林女士这个说法太准确了不是中西合.txt"
+  },
+  {
+    "sender": "system",
+    "location": "自力村",
+    "time": "09:13",
+    "textFile": "during/lin/035--已登上铭石楼楼顶-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:13",
+    "textFile": "during/lin/036-哇林女士你看这个视野稻田村庄远.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "09:14",
+    "textFile": "during/lin/037-123好多呀数不过来.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:14",
+    "textFile": "during/lin/038-哈哈自力村一共有15座呢乐乐你看头顶.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "09:15",
+    "textFile": "during/lin/039-修旧如旧保留手工的痕迹比追求完美更.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:16",
+    "textFile": "during/lin/040-没错修缮的时候还在地基里挖出一个陶罐.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "09:16",
+    "textFile": "during/lin/041-找到了那些凸出来的小阳台.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:17",
+    "textFile": "during/lin/042-太棒了第一个任务完成稻田城堡印章.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "09:17",
+    "textFile": "during/lin/043-乐乐你第一个印章拿到了下午竹林还有第.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:18",
+    "textFile": "during/lin/044-对不过现在咱们先不急快到中午了太阳.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "09:19",
+    "textFile": "during/lin/045-挺好的不赶乐乐也听得很认真.txt"
+  },
+  {
+    "sender": "system",
+    "time": "09:19",
+    "textFile": "during/lin/046--回民宿前--午餐预告-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:19",
+    "textFile": "during/lin/047-快到饭点了先给乐乐讲讲等下那碗煲仔饭的.txt"
+  },
+  {
+    "sender": "ai",
+    "text": "",
+    "facilityStop": "meal",
+    "time": "09:19"
+  },
+  {
+    "sender": "ai",
+    "time": "09:20",
+    "textFile": "during/lin/049-那就太好啦走咱们先回民宿下午的竹林.txt"
+  },
+  {
+    "sender": "system",
+    "time": "09:21",
+    "textFile": "during/lin/050--午间回民宿休整-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "09:21",
+    "textFile": "during/lin/051-回民宿啦给您标一下午休和推车的便利设施.txt"
+  },
+  {
+    "sender": "ai",
+    "text": "",
+    "facilityStop": "rest",
+    "time": "09:21"
+  },
+  {
+    "sender": "system",
+    "location": "马降龙",
+    "time": "14:00",
+    "textFile": "during/lin/053--次日下午--马降龙竹林-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:00",
+    "textFile": "during/lin/054-乐乐林女士下午好呀咱们现在到马降龙.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "14:01",
+    "textFile": "during/lin/055-哇好多竹子比家里的竹林还高.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:01",
+    "textFile": "during/lin/056-对呀这里的竹子有十几米高呢而且啊竹.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "14:02",
+    "textFile": "during/lin/057-我看到了那里有个小角角.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "14:02",
+    "textFile": "during/lin/058-太棒了乐乐眼睛真尖那就是天禄楼它藏.txt"
+  },
+  {
+    "sender": "system",
+    "location": "赤坎古镇",
+    "time": "18:00",
+    "textFile": "during/lin/059--次日晚上--赤坎古镇-.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "18:00",
+    "textFile": "during/lin/060-晚上好赤坎灯光刚亮给您推荐几条适合带.txt"
+  },
+  {
+    "sender": "ai",
+    "text": "",
+    "facilityStop": "chikan",
+    "time": "18:00"
+  },
+  {
+    "sender": "ai",
+    "time": "18:00",
+    "textFile": "during/lin/062-林女士乐乐晚上好呀咱们现在到了赤坎.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "乐乐",
+    "time": "18:01",
+    "textFile": "during/lin/063-好漂亮那些房子会发光.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "18:01",
+    "textFile": "during/lin/064-对呀这些亮亮的房子叫骑楼以前的人.txt"
+  },
+  {
+    "sender": "user",
+    "userName": "林女士",
+    "time": "18:02",
+    "textFile": "during/lin/065-一天下来乐乐精神还这么好这趟值了.txt"
+  },
+  {
+    "sender": "ai",
+    "time": "18:03",
+    "textFile": "during/lin/066-林女士乐乐今天太棒了早上找到了燕子窝.txt"
+  }
+]

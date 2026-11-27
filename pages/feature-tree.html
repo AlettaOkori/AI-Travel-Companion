@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI旅伴 · 特征树（策划 + 技术）</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+      background: #eef0f4;
+      color: #000;
+      min-height: 100vh;
+      padding: 32px 20px 64px;
+    }
+    .container { max-width: 1440px; margin: 0 auto; }
+    h1 { text-align: center; font-size: 28px; margin-bottom: 8px; }
+    .subtitle { text-align: center; font-size: 14px; margin-bottom: 24px; color: #333; }
+
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+      align-items: center; margin-bottom: 24px;
+    }
+    .view-tabs { display: flex; gap: 4px; background: #fff; padding: 4px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+    .view-tab {
+      padding: 8px 18px; border: none; border-radius: 8px; cursor: pointer;
+      font-size: 14px; font-weight: 600; background: transparent; color: #333;
+    }
+    .view-tab.active { background: #2563eb; color: #fff; }
+    .btn-export {
+      padding: 8px 16px; border-radius: 8px; border: 1px solid #ccc;
+      background: #fff; cursor: pointer; font-size: 13px;
+    }
+    .btn-export:hover { background: #f5f5f5; }
+
+    .legend {
+      display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+      margin-bottom: 20px; font-size: 13px;
+    }
+    .badge {
+      display: inline-block; padding: 2px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 600;
+    }
+    .badge-done { background: #d4edda; color: #155724; }
+    .badge-progress { background: #fff3cd; color: #856404; }
+    .badge-todo { background: #e2e8f0; color: #475569; }
+    .badge-simple { background: #dbeafe; color: #1e40af; }
+    .badge-medium { background: #fef3c7; color: #92400e; }
+    .badge-complex { background: #fce7f3; color: #9d174d; }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ── 树形视图 ── */
+    .tree-root { display: flex; flex-direction: column; gap: 20px; }
+    .tree-section {
+      background: #fff; border-radius: 14px; padding: 20px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+    .section-head {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #f0f0f0;
+    }
+    .section-icon { font-size: 22px; }
+    .section-title { font-size: 18px; font-weight: 700; }
+    .section-desc { font-size: 13px; color: #555; margin-top: 2px; }
+
+    .feat-group { margin-bottom: 12px; }
+    .feat-group-title {
+      font-size: 14px; font-weight: 700; color: #2563eb;
+      margin: 12px 0 8px; padding-left: 8px; border-left: 3px solid #2563eb;
+    }
+    .feat-item {
+      border: 1px solid #e8e8e8; border-radius: 10px; padding: 14px 16px;
+      margin-bottom: 8px; background: #fafafa;
+    }
+    .feat-item.parent { background: #f0f4ff; border-color: #c7d7fe; }
+    .feat-item-head {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .feat-id { font-family: ui-monospace, monospace; font-size: 12px; color: #666; min-width: 48px; }
+    .feat-name { font-size: 15px; font-weight: 600; flex: 1; }
+    .feat-points { margin-left: 56px; }
+    .feat-points li {
+      font-size: 13px; line-height: 1.65; color: #222; margin-bottom: 3px;
+    }
+    .feat-anchor {
+      margin-left: 56px; margin-top: 6px; font-size: 11px;
+      font-family: ui-monospace, monospace; color: #64748b;
+    }
+    .children { margin-left: 20px; border-left: 2px dashed #ddd; padding-left: 12px; }
+
+    /* ── 表格视图 ── */
+    .table-wrap {
+      background: #fff; border-radius: 14px; padding: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06); overflow-x: auto;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th, td {
+      border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f8fafc; font-weight: 700; white-space: nowrap; position: sticky; top: 0; }
+    tr:nth-child(even) td { background: #fafafa; }
+    .cell-points { max-width: 280px; line-height: 1.5; }
+    .summary-bar {
+      margin-top: 20px; background: #fff; border-radius: 14px; padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;
+      text-align: center;
+    }
+    .summary-num { font-size: 24px; font-weight: 700; }
+    .summary-lbl { font-size: 12px; color: #555; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>华云天图 AI 旅伴 · 特征树</h1>
+    <p class="subtitle">开平碉楼 C 端 · 策划视角 + 技术视角 · 可导出制表</p>
+
+    <div class="toolbar">
+      <div class="view-tabs">
+        <button class="view-tab active" data-view="plan">策划特征树</button>
+        <button class="view-tab" data-view="tech">技术特征树</button>
+        <button class="view-tab" data-view="table">对照表（制表用）</button>
+      </div>
+      <button class="btn-export" id="btnCopyTsv">复制表格到剪贴板 (TSV)</button>
+    </div>
+
+    <div class="legend">
+      <span><span class="badge badge-done">已完成</span></span>
+      <span><span class="badge badge-progress">部分完成</span></span>
+      <span><span class="badge badge-todo">占位/待开发</span></span>
+      <span><span class="badge badge-simple">简</span></span>
+      <span><span class="badge badge-medium">中</span></span>
+      <span><span class="badge badge-complex">复</span></span>
+    </div>
+
+    <div id="panel-plan" class="panel active"></div>
+    <div id="panel-tech" class="panel"></div>
+    <div id="panel-table" class="panel"></div>
+
+    <div class="summary-bar" id="summaryBar"></div>
+  </div>
+
+  <script>
+  /* ═══════════════════════════════════════════════════════════
+     特征目录 · 策划 planning[] + 技术 technical[]
+     id 规则: G=通用 S=行前 D=行中 H=行后 M=商城
+     ═══════════════════════════════════════════════════════════ */
+  const FEATURES = [
+    /* ── 通用 ── */
+    { id:'G-01', tab:'入门', group:'通用', parent:null, name:'用户画像入门', complexity:'简', status:'done',
+      planning:['品牌开场与产品介绍','选择旅行节奏（深度文化/亲子互动等）','选择兴趣标签（建筑/美食/摄影等）','授权同步历史偏好（演示）','完成引导后进入主应用'],
+      technical:['index.html 独立静态页','选项交互与动效','写入 localStorage 用户 id','跳转 app.html'],
+      anchor:'index.html' },
+    { id:'G-02', tab:'全局', group:'通用', parent:null, name:'多用户切换', complexity:'简', status:'done',
+      planning:['张先生线（建筑/情侣慢游）','林女士线（亲子家庭）','切换后标题/脚本/语音/收获全变','演示评审用 persona 隔离'],
+      technical:['USER_DB[zhang|lin]','getCurrentUserId()/setCurrentUserId()','localStorage: hx_current_user','loadUserData(uid) 重载三阶段','#userSwitcher 收获/商城各一套'],
+      anchor:'app.html · USER_DB' },
+    { id:'G-03', tab:'全局', group:'通用', parent:null, name:'四 Tab 应用壳', complexity:'简', status:'done',
+      planning:['行前 / 行中 / 行后 / 商城 底部导航','单手持机移动优先布局','品牌头与角色标题随 Tab 变化'],
+      technical:['.tabbar data-tab 切换','#tab-pretrip|during|harvest|shop CSS 显隐','.device-ios 设备框 preview 模式','css/tokens.css + app.css'],
+      anchor:'app.html · .tabbar' },
+
+    /* ── 行前 ── */
+    { id:'P-01', tab:'行前', group:'行前 · 规划对话', parent:null, name:'行前规划对话', complexity:'中', status:'done',
+      planning:['AI 定制师多轮问答','点击消息区推进下一条','AI 打字中指示','用户气泡自动跟进','7 项准备任务叙事串联'],
+      technical:['pretrip.script[] type: ai|user|card','autoAdvance()/renderStep()','assets/content/pretrip/*.txt','*-script.json flow 索引','#pretrip-messages'],
+      anchor:'pretrip.script · content-loader' },
+    { id:'P-02', tab:'行前', group:'行前 · 规划对话', parent:null, name:'准备进度条', complexity:'简', status:'done',
+      planning:['顶部五步：住宿→交通→门票→行李→确认','当前步高亮','已完成打勾','感知准备完成度'],
+      technical:['#topChecklist .tc-item','checklistMap 脚本索引映射','showTopChecklist()'],
+      anchor:'#topChecklist · checklistMap' },
+    { id:'P-03', tab:'行前', group:'行前 · 决策卡片', parent:null, name:'准备清单卡', complexity:'简', status:'done',
+      planning:['7 项出行准备任务可视化','勾选感反馈','嵌入对话流关键节点'],
+      technical:['subtype: checklist','renderChecklist()','renderCard()'],
+      anchor:'subtype:checklist' },
+    { id:'P-04', tab:'行前', group:'行前 · 决策卡片', parent:null, name:'酒店推荐卡', complexity:'简', status:'done',
+      planning:['2–3 方案对比','含价格/特色/推荐理由','用户选定一家'],
+      technical:['subtype: hotel','renderHotelCard()','pretrip.itinerary.hotel'],
+      anchor:'subtype:hotel' },
+    { id:'P-05', tab:'行前', group:'行前 · 决策卡片', parent:null, name:'高铁班次卡', complexity:'简', status:'done',
+      planning:['去程/返程班次展示','时刻与到站说明','基于日期给建议'],
+      technical:['subtype: train','renderTrainCard()','itinerary.train[]'],
+      anchor:'subtype:train' },
+    { id:'P-06', tab:'行前', group:'行前 · 决策卡片', parent:null, name:'人流提示卡', complexity:'简', status:'done',
+      planning:['高峰时段预警','错峰游览建议','与路线卡衔接'],
+      technical:['subtype: crowd','renderCrowdCard()'],
+      anchor:'subtype:crowd' },
+    { id:'P-07', tab:'行前', group:'行前 · 决策卡片', parent:null, name:'多日路线卡', complexity:'中', status:'done',
+      planning:['Day1/Day2 时间表','景点游览顺序','可调整节奏提示'],
+      technical:['subtype: route','renderRouteCard()','itinerary.route[]'],
+      anchor:'subtype:route' },
+    { id:'P-08', tab:'行前', group:'行前 · 决策卡片', parent:null, name:'天气穿衣卡', complexity:'简', status:'done',
+      planning:['2 日天气预报','穿衣/雨具/防晒提醒','结合出行场景'],
+      technical:['subtype: weather','renderWeatherCard()'],
+      anchor:'subtype:weather' },
+    { id:'P-09', tab:'行前', group:'行前 · 导游选择', parent:null, name:'导游档位选择', complexity:'中', status:'done',
+      planning:['AI 导游（全部免费）','著名 AI 导游数字分身（按日付费）','真人远程导游（视频连线）','匹配度/评分/擅长标签','查看更多→导游列表弹窗'],
+      technical:['subtype: guide-tier','guides[]/humanGuides[]','PRETIP_GUIDE_TIERS','#guideListOverlay','buildGuideProfile()','assets/content/guides/'],
+      anchor:'subtype:guide-tier · guides[]' },
+    { id:'P-10', tab:'行前', group:'行前 · 导游选择', parent:null, name:'组团同路', complexity:'中', status:'done',
+      planning:['同路线地图示意（林女士线）','多站点停靠','每站可播同行版短语音','各听各版本时间同步'],
+      technical:['subtype: group','renderGroupTourCard()','group-tour/lin-tour.json','group-play-btn'],
+      anchor:'subtype:group · group-tour/' },
+    { id:'P-11', tab:'行前', group:'行前 · 闭环', parent:null, name:'行程汇总卡', complexity:'中', status:'done',
+      planning:['酒店/高铁/门票/路线/行李一键汇总','可展开完整版','确认出行 CTA','规划闭环仪式感'],
+      technical:['subtype: itinerary','renderItineraryCard()','renderItineraryFull()','pretrip.itinerary'],
+      anchor:'subtype:itinerary' },
+    { id:'P-12', tab:'行前', group:'行前 · 闭环', parent:null, name:'规划完成 · 导游确认弹窗', complexity:'简', status:'done',
+      planning:['规划完成庆祝动效','已选导游头像/名/标签','服务亮点说明','「开平碉楼见！」确认'],
+      technical:['#guideModalOverlay','showGuideModal()/closeGuideModal()','gm-* DOM 填充'],
+      anchor:'#guideModalOverlay' },
+
+    /* ── 行中 · 工作台（父）与子能力 ── */
+    { id:'D-00', tab:'行中', group:'行中 · 导览工作台', parent:null, name:'行中导览工作台', complexity:'复', status:'done',
+      planning:['行中主战场：空间+时间+讲解+实况一体','导游关系+行程轴+对话+语音+运营情报','多消息类型嵌入（彩蛋/任务/服务）','三形态陪伴入口','用户感知「导游掌握景区」'],
+      technical:['#tab-during 整体布局','USER_DB.during 全套字段','对话/行程/音频/背景联动','多 DOM 区块协同'],
+      anchor:'#tab-during · during{}' },
+    { id:'D-01', tab:'行中', group:'行中 · 导览工作台', parent:'D-00', name:'讲解对话流', complexity:'中', status:'done',
+      planning:['导游/游客/系统三种气泡','点击空白推进下一条','打字机逐字效果','系统定位提示（到景点）'],
+      technical:['during.chatData[]','loadNext()/typeTo()','sender: ai|user|system'],
+      anchor:'chatData[] · loadNext()' },
+    { id:'D-02', tab:'行中', group:'行中 · 导览工作台', parent:'D-00', name:'语音讲解播放', complexity:'中', status:'done',
+      planning:['每条 AI 讲解自动播语音','户外单手持机可听','与对话进度同步'],
+      technical:['#guide-audio','playGuideVoice(aiIndex)','zhang→audios/ lin→lin_audios/','aiMsgCounter 序号映射'],
+      anchor:'playGuideVoice() · #guide-audio' },
+    { id:'D-03', tab:'行中', group:'行中 · 导览工作台', parent:'D-00', name:'知识彩蛋卡', complexity:'简', status:'done',
+      planning:['未公开细节/文保发现等深度内容','嵌入对话不打断节奏','可扫读富文本'],
+      technical:['chatData[].html .know-card','assets/content/during/*/NNN-html.txt'],
+      anchor:'.know-card' },
+    { id:'D-04', tab:'行中', group:'行中 · 导览工作台', parent:'D-00', name:'亲子任务卡', complexity:'简', status:'done',
+      planning:['儿童友好打卡任务（林女士线）','稻田城堡/竹林秘境/古镇星光','游戏化游览激励'],
+      technical:['.task-cards-row .task-card-item','chatData html 嵌入'],
+      anchor:'.task-cards-row' },
+    { id:'D-05', tab:'行中', group:'行中 · 导览工作台', parent:'D-00', name:'附近服务卡', complexity:'中', status:'done',
+      planning:['按站点推荐机位/咖啡/骑行等','配图+短说明','可播设施专属语音','结合用户画像标签'],
+      technical:['during.facilities[]','facilityStop 字段','renderFacilityCardHtml()','#during-facility-audio'],
+      anchor:'facilities[] · facilityStop' },
+    { id:'D-06', tab:'行中', group:'行中 · 导览工作台', parent:'D-00', name:'景区运营滚动条', complexity:'简', status:'done',
+      planning:['限流/闭馆/临时开放滚动提示','导游「已获悉」增强可信','可手动关闭'],
+      technical:['#ops-bar #ops-track','静态文案配置（未来接 B 端 API）'],
+      anchor:'#ops-track' },
+    { id:'D-07', tab:'行中', group:'行中 · 导览工作台', parent:'D-00', name:'行程时间轴', complexity:'中', status:'done',
+      planning:['多站点时间线（自力村→农庄→立园…）','当前站高亮','点击展开时段与讲解要点链'],
+      technical:['during.stops[]','renderItinBar()','#itin-bar #itin-detail','与 system 消息联动'],
+      anchor:'stops[] · #itin-bar' },
+    { id:'D-08', tab:'行中', group:'行中 · 导览工作台', parent:'D-00', name:'迷你地图', complexity:'简', status:'done',
+      planning:['当前聚落点位示意','路线与 pin 标注','增强空间方位感'],
+      technical:['#itin-detail .mini-map','CSS pin+route（非 GIS SDK）'],
+      anchor:'.mini-map' },
+    { id:'D-09', tab:'行中', group:'行中 · 导览工作台', parent:'D-00', name:'实景背景切换', complexity:'简', status:'done',
+      planning:['到不同景点切换行中背景图','身临其境氛围'],
+      technical:['setDuringBg(locationName)','during 背景图 assets'],
+      anchor:'setDuringBg()' },
+
+    /* ── 行中 · 独立功能 ── */
+    { id:'D-10', tab:'行中', group:'行中 · 形态与触达', parent:null, name:'虚拟来电', complexity:'简', status:'done',
+      planning:['顶部「点击与导游语音通话」气泡','iOS 风格通话界面','同步播放当前讲解语音','静音/挂断控制','解放双眼、单手持机'],
+      technical:['#during-podcast-view','#mode-switcher data-mode=podcast','#call-timer 计时器','共用 #guide-audio','挂断回 chat 模式'],
+      anchor:'#during-podcast-view · mode-switcher' },
+    { id:'D-11', tab:'行中', group:'行中 · 形态与触达', parent:null, name:'导游资料卡', complexity:'简', status:'done',
+      planning:['点击行中头像打开','在线状态/评分/服务次数','擅长领域与个人简介','建立导游信任感'],
+      technical:['#guideContactOverlay','showGuideContactModal()','buildGuideProfile()'],
+      anchor:'#guideContactOverlay' },
+    { id:'D-12', tab:'行中', group:'行中 · 形态与触达', parent:null, name:'视频通话占位', complexity:'简', status:'progress',
+      planning:['底部「📹 视频」Tab','全屏占位图表达产品愿景','暂无真视频连线'],
+      technical:['#during-video-view','data-mode=video','静态 VideoCall.png','无 WebRTC'],
+      anchor:'#during-video-view' },
+    { id:'D-13', tab:'行中', group:'行中 · 商业触达', parent:null, name:'行中文创弹窗', complexity:'简', status:'done',
+      planning:['游览尾声推荐文创','hero 图+共鸣文案','推荐 2–3 件商品','去逛逛/稍后再说'],
+      technical:['#cultureModalOverlay','during.culturePopup','关联 SHOP_DATA 商品 id','assets/content/culture/'],
+      anchor:'#cultureModalOverlay' },
+    { id:'D-14', tab:'行中', group:'行中 · 行程管理', parent:null, name:'切换行程', complexity:'中', status:'done',
+      planning:['头部切换多段行程','列表选历史/并行行程','为续游/多日票预留'],
+      technical:['#tripSelectorOverlay','renderTripSelectorList()','演示数据写死 JS'],
+      anchor:'#tripSelectorOverlay' },
+
+    /* ── 行后 ── */
+    { id:'H-01', tab:'行后', group:'行后 · 收获展示', parent:null, name:'本次收获页', complexity:'中', status:'done',
+      planning:['照片墙（点大图预览）','朋友圈文案（可复制）','旅程视频弹窗播放','任务完成/电子证书（林女士线）','「我带走了什么」满足感'],
+      technical:['#harvest-current','renderHarvestCurrent()','#imgPreviewOverlay','#videoPreviewOverlay','harvest.current'],
+      anchor:'#harvest-current' },
+    { id:'H-02', tab:'行后', group:'行后 · 知识沉淀', parent:null, name:'知识地图', complexity:'复', status:'done',
+      planning:['行程档案：按次旅行可展开时间线','知识点/文创/统计展开','知识图谱：6 大主题域聚合','按景点分组','学习进度感知'],
+      technical:['#harvest-map','renderHarvestMap()','knowledgeTree[]','tagDomainMap','renderKnowledgeDomains()','toggleTripExpand()'],
+      anchor:'knowledgeTree · tagDomainMap' },
+    { id:'H-03', tab:'行后', group:'行后 · 扩展占位', parent:null, name:'更多功能占位', complexity:'简', status:'todo',
+      planning:['儿童智能设备绑定入口','景区互动设备（AR 望远镜）','跳转文创商城','均为未来扩展卡片'],
+      technical:['#harvest-more','renderMoreFeatures()','openChildDevicePanel() 等空函数'],
+      anchor:'#harvest-more' },
+
+    /* ── 商城 ── */
+    { id:'M-01', tab:'商城', group:'商城 · 文创消费', parent:null, name:'文创商城', complexity:'中', status:'done',
+      planning:['按景点切换商品列表','筛选（文创/纪念/书籍等）','排序（默认/价格）','商品详情','加购/立即购买','购物车角标与改数量','结算页演示（无真支付）'],
+      technical:['#tab-shop','SHOP_DATA','renderShop()/renderShopGrid()','openShopDetail()/openCart()','localStorage 购物车','showToast()'],
+      anchor:'SHOP_DATA · renderShop()' },
+  ];
+
+  const STATUS_LABEL = { done:'已完成', progress:'部分完成', todo:'占位/待开发' };
+  const STATUS_CLASS = { done:'badge-done', progress:'badge-progress', todo:'badge-todo' };
+  const COMPLEX_LABEL = { '简':'简', '中':'中', '复':'复' };
+  const COMPLEX_CLASS = { '简':'badge-simple', '中':'badge-medium', '复':'badge-complex' };
+
+  const GROUP_ORDER = [
+    '通用','行前 · 规划对话','行前 · 决策卡片','行前 · 导游选择','行前 · 闭环',
+    '行中 · 导览工作台','行中 · 形态与触达','行中 · 商业触达','行中 · 行程管理',
+    '行后 · 收获展示','行后 · 知识沉淀','行后 · 扩展占位','商城 · 文创消费'
+  ];
+
+  function badge(cls, text) {
+    return '<span class="badge ' + cls + '">' + text + '</span>';
+  }
+
+  function renderFeatItem(f, mode) {
+    const points = mode === 'plan' ? f.planning : f.technical;
+    const isParent = !f.parent && FEATURES.some(c => c.parent === f.id);
+    const parentClass = (f.id === 'D-00' || isParent) ? ' parent' : '';
+    const pointLabel = mode === 'plan' ? '策划功能点' : '技术功能点';
+    let html = '<div class="feat-item' + parentClass + '">';
+    html += '<div class="feat-item-head">';
+    html += '<span class="feat-id">' + f.id + '</span>';
+    html += '<span class="feat-name">' + f.name + '</span>';
+    html += badge(STATUS_CLASS[f.status], STATUS_LABEL[f.status]);
+    html += badge(COMPLEX_CLASS[f.complexity], COMPLEX_LABEL[f.complexity]);
+    html += '<span style="font-size:12px;color:#666">' + f.tab + '</span>';
+    html += '</div>';
+    html += '<ul class="feat-points">';
+    points.forEach(p => { html += '<li>' + p + '</li>'; });
+    html += '</ul>';
+    if (mode === 'tech') {
+      html += '<div class="feat-anchor">锚点: ' + f.anchor + '</div>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function renderTree(mode) {
+    const sectionMap = {};
+    GROUP_ORDER.forEach(g => { sectionMap[g] = []; });
+    FEATURES.forEach(f => {
+      if (f.parent) return;
+      if (sectionMap[f.group]) sectionMap[f.group].push(f);
+    });
+
+    const sectionIcons = {
+      '通用':'🧭','行前 · 规划对话':'💬','行前 · 决策卡片':'🃏','行前 · 导游选择':'🎭','行前 · 闭环':'✅',
+      '行中 · 导览工作台':'🗺️','行中 · 形态与触达':'📱','行中 · 商业触达':'🎁','行中 · 行程管理':'📋',
+      '行后 · 收获展示':'🎁','行后 · 知识沉淀':'🧠','行后 · 扩展占位':'✨','商城 · 文创消费':'🛍️'
+    };
+    const sectionDesc = {
+      '通用': mode === 'plan' ? '用户身份与应用框架' : '全局壳层与数据路由',
+      '行前 · 规划对话': mode === 'plan' ? 'AI 定制师对话体验' : 'pretrip 脚本引擎',
+      '行前 · 决策卡片': mode === 'plan' ? '结构化决策信息卡片' : 'renderCard 八类 subtype',
+      '行前 · 导游选择': mode === 'plan' ? '行中导游预选与付费档位' : 'guides 数据与弹窗',
+      '行前 · 闭环': mode === 'plan' ? '规划完成确认' : '行程卡与完成弹窗',
+      '行中 · 导览工作台': mode === 'plan' ? '景区陪伴核心体验（含子能力）' : 'during 多模块联动',
+      '行中 · 形态与触达': mode === 'plan' ? '多形态交互与导游触达' : 'mode-switcher 与弹窗',
+      '行中 · 商业触达': mode === 'plan' ? '游览中商业转化' : '文创弹窗组件',
+      '行中 · 行程管理': mode === 'plan' ? '多段行程切换' : '行程选择器',
+      '行后 · 收获展示': mode === 'plan' ? '旅行成果可视化' : 'harvest-current 渲染',
+      '行后 · 知识沉淀': mode === 'plan' ? '认知地图与档案' : 'knowledgeTree 聚合',
+      '行后 · 扩展占位': mode === 'plan' ? '未来 IoT 等入口' : '空函数占位',
+      '商城 · 文创消费': mode === 'plan' ? '文创购买闭环演示' : 'SHOP_DATA 与购物车'
+    };
+
+    let html = '<div class="tree-root">';
+    GROUP_ORDER.forEach(group => {
+      const roots = sectionMap[group];
+      if (!roots.length) return;
+      html += '<div class="tree-section">';
+      html += '<div class="section-head"><span class="section-icon">' + (sectionIcons[group]||'📦') + '</span>';
+      html += '<div><div class="section-title">' + group + '</div>';
+      html += '<div class="section-desc">' + (sectionDesc[group]||'') + '</div></div></div>';
+      roots.forEach(f => {
+        html += renderFeatItem(f, mode);
+        const children = FEATURES.filter(c => c.parent === f.id);
+        if (children.length) {
+          html += '<div class="children">';
+          children.forEach(c => { html += renderFeatItem(c, mode); });
+          html += '</div>';
+        }
+      });
+      html += '</div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function renderTable() {
+    const cols = ['ID','功能名称','Tab','分组','父功能','复杂度','状态','策划功能点','技术功能点','代码锚点'];
+    let html = '<div class="table-wrap"><table id="featTable"><thead><tr>';
+    cols.forEach(c => { html += '<th>' + c + '</th>'; });
+    html += '</tr></thead><tbody>';
+    FEATURES.forEach(f => {
+      const parentName = f.parent ? (FEATURES.find(p => p.id === f.parent)||{}).name || f.parent : '';
+      html += '<tr>';
+      html += '<td>' + f.id + '</td>';
+      html += '<td><b>' + f.name + '</b></td>';
+      html += '<td>' + f.tab + '</td>';
+      html += '<td>' + f.group + '</td>';
+      html += '<td>' + parentName + '</td>';
+      html += '<td>' + f.complexity + '</td>';
+      html += '<td>' + STATUS_LABEL[f.status] + '</td>';
+      html += '<td class="cell-points">' + f.planning.join('；') + '</td>';
+      html += '<td class="cell-points">' + f.technical.join('；') + '</td>';
+      html += '<td class="cell-points" style="font-family:monospace;font-size:11px">' + f.anchor + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    return html;
+  }
+
+  function renderSummary() {
+    const total = FEATURES.length;
+    const done = FEATURES.filter(f => f.status === 'done').length;
+    const roots = FEATURES.filter(f => !f.parent).length;
+    const complex = FEATURES.filter(f => f.complexity === '复').length;
+    return '<div><div class="summary-num">' + total + '</div><div class="summary-lbl">功能点总数</div></div>'
+      + '<div><div class="summary-num">' + roots + '</div><div class="summary-lbl">一级功能</div></div>'
+      + '<div><div class="summary-num">' + done + '</div><div class="summary-lbl">已完成</div></div>'
+      + '<div><div class="summary-num">' + complex + '</div><div class="summary-lbl">高复杂</div></div>';
+  }
+
+  function copyTsv() {
+    const header = ['ID','功能名称','Tab','分组','父功能','复杂度','状态','策划功能点','技术功能点','代码锚点'];
+    const rows = FEATURES.map(f => {
+      const parentName = f.parent ? (FEATURES.find(p => p.id === f.parent)||{}).name || '' : '';
+      return [f.id, f.name, f.tab, f.group, parentName, f.complexity, STATUS_LABEL[f.status],
+        f.planning.join('；'), f.technical.join('；'), f.anchor];
+    });
+    const tsv = [header, ...rows].map(r => r.map(c => String(c).replace(/\t/g,' ').replace(/\n/g,' ')).join('\t')).join('\n');
+    navigator.clipboard.writeText(tsv).then(() => alert('已复制 ' + FEATURES.length + ' 行到剪贴板，可粘贴到 Excel / 飞书表格'));
+  }
+
+  document.getElementById('panel-plan').innerHTML = renderTree('plan');
+  document.getElementById('panel-tech').innerHTML = renderTree('tech');
+  document.getElementById('panel-table').innerHTML = renderTable();
+  document.getElementById('summaryBar').innerHTML = renderSummary();
+
+  document.querySelectorAll('.view-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.view).classList.add('active');
+    });
+  });
+  document.getElementById('btnCopyTsv').addEventListener('click', copyTsv);
+  </script>
+</body>
+</html>

@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>华云天图 AI 旅伴</title>
+<style>
+  /* ═══════════════════════════════════════════
+     Design Tokens（内嵌，与 app.html 保持一致）
+     ═══════════════════════════════════════════ */
+  :root {
+    --bg:            oklch(97% 0.004 250);
+    --bg-elevated:   oklch(99% 0.002 250);
+    --surface:       oklch(100% 0 0);
+    --surface-2:     oklch(96% 0.006 250);
+    --surface-3:     oklch(92% 0.008 250);
+    --fg:            oklch(18% 0.025 250);
+    --fg-dim:        oklch(36% 0.018 250);
+    --muted:         oklch(50% 0.018 250);
+    --muted-2:       oklch(64% 0.012 250);
+    --border:        oklch(88% 0.008 250);
+    --border-strong: oklch(78% 0.012 250);
+    --accent:        oklch(56% 0.20 255);
+    --accent-dim:    oklch(56% 0.20 255 / 0.10);
+    --accent-glow:   oklch(56% 0.20 255 / 0.25);
+    --accent-warm:        oklch(56% 0.14 48);
+    --accent-warm-dim:    oklch(56% 0.14 48 / 0.12);
+    --accent-warm-glow:   oklch(56% 0.14 48 / 0.28);
+    --accent-warm-deep:   oklch(40% 0.11 48);
+    --ink-night:     oklch(22% 0.04 260);
+    --ink-night-2:   oklch(28% 0.05 258);
+    --success:       oklch(58% 0.18 145);
+    --success-dim:   oklch(58% 0.18 145 / 0.12);
+    --danger:        oklch(58% 0.20 25);
+    --fs-11: 11px; --fs-12: 12px; --fs-13: 13px; --fs-14: 14px;
+    --fs-15: 15px; --fs-16: 16px; --fs-17: 17px; --fs-18: 18px;
+    --fs-20: 20px; --fs-22: 22px; --fs-24: 24px; --fs-26: 26px;
+    --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif;
+    --font-body:    -apple-system, BlinkMacSystemFont, 'SF Pro Text',  'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+    --font-serif:   'Songti SC', 'STSong', 'Source Han Serif CN', 'SimSun', Georgia, serif;
+    --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+    --sp-5: 20px; --sp-6: 24px; --sp-8: 32px;
+    --r-1: 6px; --r-2: 8px; --r-3: 10px; --r-4: 12px;
+    --r-5: 14px; --r-6: 16px; --r-7: 18px; --r-8: 20px;
+    --r-9: 24px; --r-full: 999px;
+    --shadow-sm: 0 1px 2px oklch(18% 0.02 250 / 0.04);
+    --shadow-md: 0 4px 12px oklch(18% 0.02 250 / 0.08);
+    --shadow-lg: 0 12px 40px oklch(18% 0.02 250 / 0.12);
+    --shadow-accent: 0 2px 12px oklch(56% 0.20 255 / 0.20);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #e8e9ec;
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  /* ═══════════════════════════════════════════
+     iPhone 设备框架
+     ═══════════════════════════════════════════ */
+  .device-ios {
+    width: 390px; height: 844px;
+    background: var(--surface);
+    border-radius: 56px;
+    border: 1px solid #d4d5d9;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -16px rgba(0,0,0,.12), 0 0 0 6px #f0f0f2;
+  }
+  .device-ios::before {
+    content: '';
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 120px; height: 34px;
+    background: #1a1a1a;
+    border-radius: 20px;
+    z-index: 100;
+  }
+  .device-ios::after {
+    content: '';
+    position: absolute;
+    bottom: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 134px; height: 5px;
+    background: var(--fg);
+    border-radius: 3px;
+    opacity: .2;
+    z-index: 100;
+  }
+
+  /* 状态栏 */
+  .status-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 54px;
+    padding: 16px 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-display);
+    font-size: var(--fs-17);
+    font-weight: 600;
+    z-index: 90;
+    pointer-events: none;
+    color: #fff;
+    background: transparent;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  .status-bar.on-brand {
+    background: var(--accent);
+    color: #fff;
+  }
+  .status-bar .icons {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .status-bar svg {
+    fill: currentColor;
+  }
+
+  /* 屏幕内容区 */
+  .screen {
+    position: absolute;
+    inset: 0;
+    padding-top: 54px;
+    padding-bottom: 28px;
+    overflow: hidden;
+  }
+
+  /* ═══════════════════════════════════════════
+     第一阶段：开屏页 Splash
+     ═══════════════════════════════════════════ */
+  .splash {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 18%;
+    gap: 0;
+    background: var(--ink-night);
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.6s ease-out;
+    overflow: hidden;
+  }
+  .splash.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .splash .scene {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: url('assets/upload/demo立园.jpg') center 30% / cover no-repeat;
+    animation: scene-drift 9s ease-out both;
+  }
+  @keyframes scene-drift {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1); }
+  }
+  .splash .splash-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0.32) 0%,
+      rgb(0 0 0 / 0.10) 14%,
+      rgb(0 0 0 / 0) 28%,
+      rgb(0 0 0 / 0.38) 44%,
+      rgb(0 0 0 / 0.62) 58%,
+      rgb(0 0 0 / 0.78) 72%,
+      rgb(0 0 0 / 0.90) 100%
+    );
+  }
+  .splash .splash-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    animation: splash-rise 0.9s var(--ease, ease-out) 0.15s both;
+  }
+  @keyframes splash-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .splash .logo-mark {
+    width: 72px; height: 72px;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px oklch(0% 0 0 / 0.4), 0 0 0 1px oklch(100% 0 0 / 0.14);
+  }
+  .splash .logo-mark img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .splash .brand {
+    font-family: var(--font-serif);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #fff;
+    text-shadow:
+      0 1px 2px rgb(0 0 0 / 0.55),
+      0 4px 24px rgb(0 0 0 / 0.45);
+    margin-top: 2px;
+  }
+  .splash .brand small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--fs-13);
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    color: rgb(255 255 255 / 0.92);
+    text-align: center;
+    margin-top: 10px;
+    text-indent: 0.32em;
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.5);
+  }
+  .splash .slogan {
+    font-size: var(--fs-12);
+    color: rgb(255 255 255 / 0.88);
+    letter-spacing: 0.24em;
+    text-indent: 0.24em;
+    font-weight: 400;
+    border-top: 1px solid rgb(255 255 255 / 0.28);
+    padding-top: 14px;
+    text-shadow: 0 1px 6px rgb(0 0 0 / 0.45);
+  }
+  .splash .site-credit {
+    position: absolute;
+    bottom: 40px;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgb(255 255 255 / 0.72);
+    text-shadow: 0 1px 4px rgb(0 0 0 / 0.5);
+  }
+
+  /* ═══════════════════════════════════════════
+     第二阶段：用户画像采集页 Onboarding
+     ═══════════════════════════════════════════ */
+  .onboard {
+    position: absolute;
+    inset: 0;
+    padding: 54px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease-out;
+    background: var(--bg);
+  }
+  .onboard.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .onboard-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .onboard-scroll::-webkit-scrollbar { display: none; }
+
+  /* 顶部品牌条 + 蓝线分隔 */
+  .onboard-top {
+    flex-shrink: 0;
+    background: var(--bg);
+  }
+  .brand-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    animation: slideIn 0.5s ease-out both;
+    animation-delay: 0.2s;
+  }
+  .onboard-divider {
+    height: 2px;
+    background: var(--accent);
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .brand-header .avatar {
+    width: 44px; height: 44px;
+    border-radius: var(--r-4);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+  .brand-header .avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .brand-header .info {
+    flex: 1;
+  }
+  .brand-header .name {
+    font-size: var(--fs-15);
+    font-weight: 600;
+    color: var(--fg);
+    line-height: 1.3;
+  }
+  .brand-header .status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-12);
+    color: var(--success);
+    margin-top: 2px;
+  }
+  .brand-header .status::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* 标题区 */
+  .onboard-title {
+    font-family: var(--font-serif);
+    font-size: var(--fs-28);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    color: var(--fg);
+    margin-bottom: 8px;
+    text-wrap: balance;
+    animation: slideIn 0.5s ease-out both;
+    animation-delay: 0.35s;
+  }
+  .onboard-title em {
+    color: var(--accent-warm-deep);
+    font-style: normal;
+    position: relative;
+  }
+  .onboard-title em::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 2px;
+    height: 3px;
+    background: var(--accent-warm-glow);
+    border-radius: 2px;
+  }
+
+  .onboard-subtitle {
+    font-size: var(--fs-14);
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 28px;
+    animation: slideIn 0.5s ease-out both;
+    animation-delay: 0.45s;
+  }
+
+  /* 表单分组 */
+  .form-section {
+    margin-bottom: 24px;
+    animation: slideIn 0.5s ease-out both;
+  }
+  .form-section:nth-child(4) { animation-delay: 0.55s; }
+  .form-section:nth-child(5) { animation-delay: 0.65s; }
+  .form-section:nth-child(6) { animation-delay: 0.75s; }
+  .form-section:nth-child(7) { animation-delay: 0.85s; }
+
+  .field-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-11);
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  /* Chips 多选 */
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .chip {
+    padding: 10px 18px;
+    border-radius: var(--r-full);
+    border: 1.5px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--fg-dim);
+    font-size: var(--fs-14);
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    user-select: none;
+  }
+  .chip:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+  .chip.selected {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-weight: 600;
+    box-shadow: 0 2px 8px var(--accent-glow);
+  }
+
+  /* AI 输入区 */
+  .ai-input {
+    margin-top: 8px;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: var(--r-6);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: 0 0 0 4px var(--accent-dim), var(--shadow-sm);
+    animation: input-pulse 2.5s ease-in-out infinite;
+    cursor: text;
+    position: relative;
+  }
+  @keyframes input-pulse {
+    0%, 100% { box-shadow: 0 0 0 4px var(--accent-dim), var(--shadow-sm); }
+    50% { box-shadow: 0 0 0 8px var(--accent-dim), 0 4px 16px var(--accent-glow); }
+  }
+  .ai-input:hover,
+  .ai-input:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 6px var(--accent-dim), 0 4px 16px var(--accent-glow);
+  }
+  .ai-input-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+  .ai-input .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    box-shadow: 0 0 12px var(--accent-glow);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .ai-input-content {
+    flex: 1;
+    min-width: 0;
+    font-size: var(--fs-14);
+    color: var(--fg);
+    line-height: 1.6;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .typing-text {
+    color: var(--fg-dim);
+  }
+  .typing-cursor {
+    color: var(--accent);
+    font-weight: 300;
+    animation: blink-cursor 0.8s ease-in-out infinite;
+    margin-left: 1px;
+  }
+  @keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .ai-input-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .voice-btn, .keyboard-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: var(--surface-2);
+    color: var(--fg-dim);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+  }
+  .voice-btn:hover, .keyboard-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+  .voice-btn svg, .keyboard-btn svg {
+    stroke: currentColor;
+    fill: none;
+  }
+
+  /* 授权行 */
+  .auth-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-6);
+  }
+
+  .auth-row .icon-wrap {
+    width: 40px; height: 40px;
+    border-radius: var(--r-3);
+    background: var(--accent-warm-dim);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .auth-row .icon-wrap svg {
+    width: 20px; height: 20px;
+    stroke: var(--accent-warm);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .auth-row .txt {
+    flex: 1;
+  }
+  .auth-row .txt .title {
+    font-size: var(--fs-14);
+    font-weight: 600;
+    color: var(--fg);
+    line-height: 1.4;
+  }
+  .auth-row .txt .desc {
+    font-size: var(--fs-12);
+    color: var(--muted);
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+
+  /* Toggle 开关 */
+  .toggle {
+    width: 48px; height: 28px;
+    border-radius: var(--r-full);
+    background: var(--border-strong);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.25s ease-out;
+    flex-shrink: 0;
+  }
+  .toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: transform 0.25s ease-out;
+  }
+  .toggle.on {
+    background: var(--accent);
+  }
+  .toggle.on::after {
+    transform: translateX(20px);
+  }
+
+  /* 底部按钮区 */
+  .onboard-footer {
+    padding: 16px 24px 24px;
+    background: linear-gradient(to top, var(--bg) 80%, transparent);
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 18px 24px;
+    border-radius: var(--r-6);
+    border: none;
+    background: var(--accent);
+    color: white;
+    font-family: var(--font-body);
+    font-size: var(--fs-16);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-accent);
+    transition: all 0.2s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px var(--accent-glow);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  .btn-primary svg {
+    width: 18px; height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* 响应式：移动端全屏 */
+  @media (max-width: 430px) {
+    body { padding: 0; }
+    .device-ios {
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+    }
+    .device-ios::before,
+    .device-ios::after { display: none; }
+    .status-bar { display: none; }
+    .screen { padding: 0; }
+    .splash, .onboard { padding-top: env(safe-area-inset-top, 0); }
+  }
+
+  /* 减少动效偏好 */
+  @media (prefers-reduced-motion: reduce) {
+    .splash .scene,
+    .splash .splash-content,
+    .brand-header .status::before,
+    .ai-input .dot { animation: none; }
+    .ai-input { animation: none; }
+    .typing-cursor { animation: none; opacity: 1; }
+    .splash, .onboard { transition-duration: 0.01ms; }
+    .form-section, .brand-header, .onboard-title, .onboard-subtitle { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="device-ios" id="app">
+  <!-- 状态栏 -->
+  <div class="status-bar">
+    <span>9:41</span>
+    <div class="icons">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="0.5"/><rect x="5" y="5" width="3" height="7" rx="0.5"/><rect x="10" y="2" width="3" height="10" rx="0.5"/><rect x="15" y="0" width="3" height="12" rx="0.5"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 0C4.5 0 1.5 1.5 0 4l1.5 1.5C2.5 3.5 5 2.5 8 2.5s5.5 1 6.5 3L16 4C14.5 1.5 11.5 0 8 0z"/><path d="M8 5c-2 0-3.5.8-4.5 2L5 8.5C5.5 7.5 6.5 7 8 7s2.5.5 3 1.5L12.5 7C11.5 5.8 10 5 8 5z"/><circle cx="8" cy="11" r="1"/></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13" fill="currentColor"><rect x="0.5" y="0.5" width="21" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1"/><rect x="2" y="2" width="15" height="8" rx="1"/><rect x="22" y="4" width="2" height="4" rx="0.5"/></svg>
+    </div>
+  </div>
+
+  <div class="screen">
+    <!-- ═══════════════════════════════════════════
+         第一阶段：开屏页
+         ═══════════════════════════════════════════ -->
+    <div class="splash" id="splash">
+      <div class="scene"></div>
+      <div class="splash-scrim" aria-hidden="true"></div>
+      <div class="splash-content">
+        <div class="logo-mark">
+          <img src="assets/images/brand/ai_avatar.png" alt="华云天图 AI 旅伴" />
+        </div>
+        <div class="brand">华云天图<small>AI 旅伴 · 开平碉楼</small></div>
+        <div class="slogan">千年同游 · AI 同行</div>
+      </div>
+      <div class="site-credit">UNESCO WORLD HERITAGE · KAIPING</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         第二阶段：用户画像采集
+         ═══════════════════════════════════════════ -->
+    <div class="onboard" id="onboard">
+      <div class="onboard-top">
+        <div class="brand-header">
+          <div class="avatar">
+            <img src="assets/images/brand/ai_avatar.png" alt="AI 规划师" />
+          </div>
+          <div class="info">
+            <div class="name">华云天图 AI 旅伴</div>
+            <div class="status">专属规划师已就位</div>
+          </div>
+        </div>
+        <div class="onboard-divider" aria-hidden="true"></div>
+      </div>
+      <div class="onboard-scroll">
+        <!-- 标题 -->
+        <h1 class="onboard-title">先让我了解<br>您的<em>旅行习惯</em></h1>
+        <p class="onboard-subtitle">回答越具体，行程越对味。支持语音输入。</p>
+
+        <!-- 旅行节奏 -->
+        <div class="form-section">
+          <div class="field-label">您偏好的旅行节奏</div>
+          <div class="chip-row" id="rhythmChips">
+            <div class="chip" data-value="deep">深度文化</div>
+            <div class="chip" data-value="relax">轻松漫游</div>
+            <div class="chip" data-value="efficient">打卡效率</div>
+            <div class="chip" data-value="family">亲子互动</div>
+          </div>
+        </div>
+
+        <!-- 特别兴趣 -->
+        <div class="form-section">
+          <div class="field-label">特别兴趣</div>
+          <div class="chip-row" id="interestChips">
+            <div class="chip" data-value="architecture">建筑遗产</div>
+            <div class="chip" data-value="food">地方饮食</div>
+            <div class="chip" data-value="craft">非遗手艺</div>
+            <div class="chip" data-value="nature">自然风景</div>
+            <div class="chip" data-value="photo">摄影出片</div>
+          </div>
+        </div>
+
+        <!-- AI 输入区 -->
+        <div class="form-section" id="aiInputSection">
+          <div class="field-label">或者直接告诉我你的旅行想法</div>
+          <div class="ai-input" id="aiInputBox">
+            <div class="ai-input-left">
+              <div class="dot"></div>
+              <div class="ai-input-content">
+                <span class="typing-text" id="typingText"></span><span class="typing-cursor" id="typingCursor">|</span>
+              </div>
+            </div>
+            <div class="ai-input-actions">
+              <!-- AI Target: 语音输入按钮 -->
+              <button class="voice-btn" id="voiceBtn" title="语音输入">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" y1="19" x2="12" y2="23"/>
+                  <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+              </button>
+              <!-- AI Target: 键盘输入按钮 -->
+              <button class="keyboard-btn" id="keyboardBtn" title="键盘输入">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 授权行 -->
+        <div class="form-section">
+          <div class="auth-row">
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div class="txt">
+              <div class="title">同步历史偏好</div>
+              <div class="desc">基于您过往的游览记录优化推荐</div>
+            </div>
+            <div class="toggle on" id="authToggle"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部按钮 -->
+      <div class="onboard-footer">
+        <button class="btn-primary" id="startBtn">
+          立即规划行程
+          <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const splash = document.getElementById('splash');
+  const onboard = document.getElementById('onboard');
+  const startBtn = document.getElementById('startBtn');
+  const authToggle = document.getElementById('authToggle');
+
+  // ═══════════════════════════════════════════
+  // 阶段过渡：Splash → Onboarding
+  // ═══════════════════════════════════════════
+  setTimeout(function() {
+    splash.classList.add('fade-out');
+    var statusBar = document.querySelector('.status-bar');
+    if (statusBar) statusBar.classList.add('on-brand');
+    setTimeout(function() {
+      splash.style.display = 'none';
+      onboard.classList.add('visible');
+    }, 600);
+  }, 2000);
+
+  // ═══════════════════════════════════════════
+  // Chip 多选交互
+  // ═══════════════════════════════════════════
+  function initChips(containerId) {
+    var container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.querySelectorAll('.chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        chip.classList.toggle('selected');
+      });
+    });
+  }
+
+  initChips('rhythmChips');
+  initChips('interestChips');
+
+  // ═══════════════════════════════════════════
+  // Toggle 开关
+  // ═══════════════════════════════════════════
+  if (authToggle) {
+    authToggle.addEventListener('click', function() {
+      authToggle.classList.toggle('on');
+    });
+  }
+
+  // ═══════════════════════════════════════════
+  // AI 输入区 - 打字动画
+  // ═══════════════════════════════════════════
+  var typingEl = document.getElementById('typingText');
+  var phrases = [
+    '我想看没开发的野碉楼…',
+    '带娃轻松游，不要太赶…',
+    '我是摄影爱好者，想拍日出…',
+    '周六出发，两天一夜…',
+    '想吃最地道的黄鳝饭…'
+  ];
+  var phraseIdx = 0;
+  var charIdx = 0;
+  var isDeleting = false;
+  var typeSpeed = 80;
+
+  function typeLoop() {
+    if (!typingEl) return;
+    var current = phrases[phraseIdx];
+
+    if (!isDeleting) {
+      typingEl.textContent = current.substring(0, charIdx + 1);
+      charIdx++;
+      if (charIdx === current.length) {
+        isDeleting = true;
+        setTimeout(typeLoop, 2000);
+        return;
+      }
+      setTimeout(typeLoop, typeSpeed + Math.random() * 40);
+    } else {
+      typingEl.textContent = current.substring(0, charIdx - 1);
+      charIdx--;
+      if (charIdx === 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        setTimeout(typeLoop, 400);
+        return;
+      }
+      setTimeout(typeLoop, 40);
+    }
+  }
+
+  // 延迟启动打字动画（等 onboarding 显示后）
+  setTimeout(typeLoop, 2200);
+
+  // ═══════════════════════════════════════════
+  // 开始规划 → 跳转 app.html
+  // ═══════════════════════════════════════════
+  if (startBtn) {
+    startBtn.addEventListener('click', function() {
+      // 收集用户选择（可用于后续传递到 app.html）
+      var rhythm = [];
+      document.querySelectorAll('#rhythmChips .chip.selected').forEach(function(c) {
+        rhythm.push(c.dataset.value);
+      });
+      var interests = [];
+      document.querySelectorAll('#interestChips .chip.selected').forEach(function(c) {
+        interests.push(c.dataset.value);
+      });
+      var authEnabled = authToggle && authToggle.classList.contains('on');
+
+      // 可选：将用户偏好存入 localStorage
+      try {
+        localStorage.setItem('hx_user_profile', JSON.stringify({
+          rhythm: rhythm,
+          interests: interests,
+          authSync: authEnabled,
+          timestamp: Date.now()
+        }));
+      } catch(e) {}
+
+      // 跳转到主应用
+      window.location.href = 'app.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

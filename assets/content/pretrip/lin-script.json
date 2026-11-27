@@ -1,0 +1,256 @@
+{
+  "format": "chapter-v1",
+  "chapters": [
+    {
+      "title": "第一章：开场与出行意向",
+      "file": "pretrip/lin/01-开场与意向.txt"
+    },
+    {
+      "title": "第二章：住宿预订",
+      "file": "pretrip/lin/02-住宿.txt"
+    },
+    {
+      "title": "第三章：交通安排",
+      "file": "pretrip/lin/03-交通.txt"
+    },
+    {
+      "title": "第四章：门票购买",
+      "file": "pretrip/lin/04-门票.txt"
+    },
+    {
+      "title": "第五章：路线规划",
+      "file": "pretrip/lin/05-路线.txt"
+    },
+    {
+      "title": "第六章：组团同路",
+      "file": "pretrip/lin/06-组团.txt"
+    },
+    {
+      "title": "第七章：行李与天气",
+      "file": "pretrip/lin/07-行李天气.txt"
+    },
+    {
+      "title": "第八章：导游选择",
+      "file": "pretrip/lin/08-导游.txt"
+    },
+    {
+      "title": "第九章：收尾祝福",
+      "file": "pretrip/lin/09-收尾.txt"
+    }
+  ],
+  "flow": [
+    {
+      "type": "ai",
+      "chapter": 0,
+      "turn": 0
+    },
+    {
+      "type": "user",
+      "chapter": 0,
+      "turn": 1
+    },
+    {
+      "type": "ai",
+      "chapter": 0,
+      "turn": 2
+    },
+    {
+      "type": "card",
+      "subtype": "checklist"
+    },
+    {
+      "type": "user",
+      "chapter": 1,
+      "turn": 0
+    },
+    {
+      "type": "ai",
+      "chapter": 1,
+      "turn": 1
+    },
+    {
+      "type": "user",
+      "chapter": 1,
+      "turn": 2
+    },
+    {
+      "type": "ai",
+      "chapter": 1,
+      "turn": 3
+    },
+    {
+      "type": "user",
+      "chapter": 1,
+      "turn": 4
+    },
+    {
+      "type": "ai",
+      "chapter": 1,
+      "turn": 5
+    },
+    {
+      "type": "card",
+      "subtype": "hotel"
+    },
+    {
+      "type": "ai",
+      "chapter": 2,
+      "turn": 0
+    },
+    {
+      "type": "user",
+      "chapter": 2,
+      "turn": 1
+    },
+    {
+      "type": "ai",
+      "chapter": 2,
+      "turn": 2
+    },
+    {
+      "type": "user",
+      "chapter": 2,
+      "turn": 3
+    },
+    {
+      "type": "ai",
+      "chapter": 2,
+      "turn": 4
+    },
+    {
+      "type": "card",
+      "subtype": "train"
+    },
+    {
+      "type": "ai",
+      "chapter": 2,
+      "turn": 5
+    },
+    {
+      "type": "user",
+      "chapter": 2,
+      "turn": 6
+    },
+    {
+      "type": "ai",
+      "chapter": 2,
+      "turn": 7
+    },
+    {
+      "type": "user",
+      "chapter": 3,
+      "turn": 0
+    },
+    {
+      "type": "ai",
+      "chapter": 3,
+      "turn": 1
+    },
+    {
+      "type": "card",
+      "subtype": "crowd"
+    },
+    {
+      "type": "ai",
+      "chapter": 4,
+      "turn": 0
+    },
+    {
+      "type": "user",
+      "chapter": 4,
+      "turn": 1
+    },
+    {
+      "type": "ai",
+      "chapter": 4,
+      "turn": 2
+    },
+    {
+      "type": "card",
+      "subtype": "route"
+    },
+    {
+      "type": "ai",
+      "chapter": 5,
+      "turn": 0
+    },
+    {
+      "type": "card",
+      "subtype": "group"
+    },
+    {
+      "type": "ai",
+      "chapter": 5,
+      "turn": 1
+    },
+    {
+      "type": "user",
+      "chapter": 5,
+      "turn": 2
+    },
+    {
+      "type": "ai",
+      "chapter": 6,
+      "turn": 0
+    },
+    {
+      "type": "user",
+      "chapter": 6,
+      "turn": 1
+    },
+    {
+      "type": "ai",
+      "chapter": 6,
+      "turn": 2
+    },
+    {
+      "type": "card",
+      "subtype": "weather"
+    },
+    {
+      "type": "ai",
+      "chapter": 7,
+      "turn": 0
+    },
+    {
+      "type": "card",
+      "subtype": "guide-tier"
+    },
+    {
+      "type": "user",
+      "chapter": 7,
+      "turn": 1
+    },
+    {
+      "type": "ai",
+      "chapter": 7,
+      "turn": 2,
+      "_branch": "ai"
+    },
+    {
+      "type": "ai",
+      "chapter": 7,
+      "turn": 3,
+      "_branch": "human"
+    },
+    {
+      "type": "user",
+      "chapter": 7,
+      "turn": 4
+    },
+    {
+      "type": "ai",
+      "chapter": 7,
+      "turn": 5
+    },
+    {
+      "type": "card",
+      "subtype": "itinerary"
+    },
+    {
+      "type": "scroll-hint",
+      "chapter": 8,
+      "turn": 0
+    }
+  ]
+}

@@ -1,0 +1,1391 @@
+{
+  "zhang": {
+    "id": "zhang",
+    "name": "张先生",
+    "avatarLabel": "张",
+    "pretrip": {
+      "agentName": "旅行专属定制师",
+      "checklistMap": {
+        "show": 5,
+        "active0": 5,
+        "done0": 13,
+        "active1": 13,
+        "done1": 19,
+        "active2": 19,
+        "done2": 22,
+        "active3": 23,
+        "done3": 27,
+        "active4": 27,
+        "done4": 31
+      },
+      "guideTier": null,
+      "selectedGuideId": null,
+      "guideTiers": [
+        {
+          "id": "ai-free",
+          "name": "AI导游",
+          "price": "免费",
+          "badge": "多款分身可选",
+          "image": "assets/images/pretrip/guide-tier-ai.jpg",
+          "highlights": "全部免费 · 知识库全覆盖 · 可查看详情后自选",
+          "witty": ""
+        },
+        {
+          "id": "human-remote",
+          "name": "著名AI导游数字分身",
+          "price": "¥35 起/天",
+          "originalPrice": "",
+          "badge": "明星导游复刻",
+          "image": "assets/images/pretrip/guide-tier-human.jpg",
+          "avatar": "assets/guides/wangjianguo.jpg",
+          "highlights": "35–60 元/天 · 名导风格深度复刻 · 可查看详情后自选",
+          "witty": "「这楼比我家装修还讲究，就是没电梯」"
+        }
+      ],
+      "humanGuide": {
+        "id": "chen-remote",
+        "name": "陈大嘴",
+        "avatar": "assets/guides/chen-remote.jpg",
+        "price": "¥30/天",
+        "originalPrice": "",
+        "tags": [
+          "金牌导游",
+          "诙谐灵魂",
+          "远程视频"
+        ],
+        "pitchByUser": {
+          "zhang": {
+            "witty": "「这楼比我家装修还讲究，就是没电梯」",
+            "bio": "前开平景区金牌讲解，转型远程视频带团后已服务860+组客人。专讲建筑结构、摄影机位和华侨冷知识，说话像脱口秀却句句有料。可实时视频答疑，按你的节奏找机位、听故事，比景区固定讲解更灵活自由。"
+          },
+          "lin": {
+            "witty": "「乐乐，这碉楼比城堡还结实，土匪来了都得排队」",
+            "bio": "十年亲子导览经验，远程视频带娃完成碉楼任务卡是拿手项。善于把建筑与华侨故事变成孩子爱听的冒险台词，节奏配合午睡与用餐。妈妈省力、孩子专注，适合第一次来开平、想先体验亲子远程带团的家庭。"
+          }
+        }
+      },
+      "itinerary": {
+        "title": "💑 开平碉楼 · 2 天 1 夜情侣慢游版",
+        "hotel": {
+          "name": "赤坎侨小馆酒店（骑楼景观大床房）",
+          "price": "¥380/晚 × 1晚",
+          "note": "含双早 | 花砖地板 · 露台剪影"
+        },
+        "train": [
+          {
+            "label": "去程 G6048",
+            "detail": "深圳北 07:15 → 开平南 09:10"
+          },
+          {
+            "label": "返程 G6047",
+            "detail": "开平南 18:05 → 深圳北 20:42"
+          }
+        ],
+        "ticket": {
+          "desc": "开平碉楼联票 ×2 成人",
+          "price": "¥440 · 2 日有效",
+          "note": "含：自力村 + 立园 + 马降龙 + 锦江里"
+        },
+        "route": [
+          {
+            "day": "Day1 周六",
+            "detail": "自力村(早) → 立园(午) → 赤坎夜景"
+          },
+          {
+            "day": "Day2 周日",
+            "detail": "马降龙(早) → 锦江里(午) → 古镇咖啡 → 返程"
+          }
+        ],
+        "checklist": [
+          "身份证 ×2",
+          "充电宝",
+          "遮阳帽",
+          "雨伞",
+          "驱蚊液",
+          "三脚架",
+          "备用存储卡",
+          "湿巾"
+        ]
+      }
+    },
+    "during": {
+      "guideMode": "ai",
+      "agentName": "王建国 AI",
+      "guideAvatar": "assets/guides/wangjianguo.jpg",
+      "guideTag": "开平碉楼 · 导游在线 可联系",
+      "guideWeixin": "wxid_wangjianguo2025",
+      "guidePhone": "138-2555-1949",
+      "stops": [
+        {
+          "name": "自力村碉楼群",
+          "time": "09:00",
+          "range": "09:00 – 11:30",
+          "detail": "聚落布局 → 材料演变 → 防御构造 → 铭石楼登顶"
+        },
+        {
+          "name": "碉楼人家农庄",
+          "time": "11:30",
+          "range": "11:30 – 13:30",
+          "detail": "旧居楼改造餐厅 · 黄鳝饭 · 未开发居楼"
+        },
+        {
+          "name": "立园",
+          "time": "13:30",
+          "range": "13:30 – 14:40",
+          "detail": "中西合璧园林 · 谢维立手稿 · 空水池故事"
+        },
+        {
+          "name": "马降龙碉楼群",
+          "time": "14:40",
+          "range": "14:40 – 16:00",
+          "detail": "竹林隐匿 · 骏庐通道 · 隐匿式肌理"
+        },
+        {
+          "name": "返程",
+          "time": "16:00",
+          "range": "16:00 –",
+          "detail": "结束今日行程，返程"
+        }
+      ],
+      "facilities": [
+        {
+          "stopId": "maganglong",
+          "title": "附近服务 · 骑行探索",
+          "personaTag": "情侣慢游",
+          "items": [
+            {
+              "id": "bike-bamboo",
+              "name": "竹林绿道双人骑行",
+              "desc": "马降龙至锦江里段约3公里，沿途竹影与碉楼交替",
+              "image": "assets/images/during/facility-zhang-bike.jpg",
+              "audio": "assets/audios/during/zhang/facility-maganglong.mp3"
+            },
+            {
+              "id": "bike-rent",
+              "name": "景区租车点（骏庐出口）",
+              "desc": "可租双人自行车，比步行省40分钟",
+              "image": "assets/images/during/facility-zhang-bike.jpg",
+              "audio": "assets/audios/during/zhang/facility-maganglong.mp3"
+            }
+          ]
+        }
+      ],
+      "facilitiesArchived": {
+        "ligarden_restCoffee": {
+          "_note": "当前版本不需要 · 附近服务 · 休憩咖啡",
+          "stopId": "ligarden",
+          "title": "附近服务 · 休憩咖啡",
+          "personaTag": "情侣慢游",
+          "items": [
+            {
+              "id": "coffee-terrace",
+              "name": "立园旁露台咖啡",
+              "desc": "园林逛完歇脚",
+              "image": "assets/images/during/facility-zhang-coffee.jpg",
+              "audio": "assets/audios/during/zhang/facility-ligarden.mp3"
+            }
+          ]
+        }
+      },
+      "culturePopup": {
+        "title": "把开平带回家",
+        "subtitle": "摄影纪念 · 景区官方文创",
+        "heroImage": "assets/images/during/culture-souvenir-hero.jpg",
+        "products": [
+          "kp02",
+          "kp03",
+          "kp06"
+        ],
+        "audio": "assets/audios/during/zhang/culture-end.mp3",
+        "introTextFile": "culture/zhang-intro.txt"
+      }
+    },
+    "harvest": {
+      "current": {
+        "photoWall": {
+          "images": [
+            "assets/images/harvest/旅行总结分享.png"
+          ]
+        },
+        "momentText": "站了一上午稻田，碉楼墙体里砌着全球贸易史，歪掉的穹顶比对称更动人。📍开平·自力村",
+        "video": {
+          "thumbnail": "assets/images/harvest/旅行总结分享.png",
+          "duration": "02:35",
+          "src": "assets/videos/harvest-trip.mp4"
+        },
+        "tasks": {
+          "completed": 3,
+          "total": 5,
+          "list": [
+            {
+              "name": "自力村建筑摄影",
+              "done": true
+            },
+            {
+              "name": "立园中西合璧解析",
+              "done": true
+            },
+            {
+              "name": "马降龙竹林光影",
+              "done": true
+            },
+            {
+              "name": "赤坎古镇夜景拍摄",
+              "done": false
+            },
+            {
+              "name": "铭石楼登顶俯瞰",
+              "done": false
+            }
+          ]
+        }
+      },
+      "stats": {
+        "trips": 4,
+        "knowledge": 73,
+        "cities": 12,
+        "chats": 189
+      },
+      "trips": [
+        {
+          "thumb": "碉",
+          "name": "开平碉楼深度一日游",
+          "date": "2025.05.20 · 5 个点位 · 31 知识点",
+          "details": {
+            "guide": "王建国 AI 陪同",
+            "timeline": [
+              {
+                "time": "09:00 — 11:30",
+                "place": "自力村碉楼群",
+                "desc": "聚落布局 · 材料演变 · 防御构造 · 铭石楼登顶"
+              },
+              {
+                "time": "11:30 — 13:30",
+                "place": "碉楼人家农庄",
+                "desc": "旧居楼改造餐厅 · 黄鳝饭 · 未开发居楼"
+              },
+              {
+                "time": "13:30 — 14:40",
+                "place": "立园",
+                "desc": "中西合璧园林 · 谢维立手稿 · 空水池故事"
+              },
+              {
+                "time": "14:40 — 16:00",
+                "place": "马降龙碉楼群",
+                "desc": "竹林隐匿 · 骏庐通道 · 隐匿式肌理"
+              }
+            ],
+            "tags": [
+              "华侨建筑",
+              "防御工事",
+              "中西合璧",
+              "竹林隐匿",
+              "园林设计",
+              "材料演变",
+              "全球拼贴",
+              "本土化翻译",
+              "聚落布局",
+              "功能主义",
+              "契约精神",
+              "手工温度"
+            ],
+            "hotTags": [
+              "华侨建筑",
+              "防御工事",
+              "中西合璧"
+            ],
+            "culturalCreatives": [
+              {
+                "img": "assets/images/harvest/文创1.png",
+                "name": "碉楼守护印章"
+              },
+              {
+                "img": "assets/images/harvest/文创2.png",
+                "name": "岭南风物贴纸"
+              },
+              {
+                "img": "assets/images/harvest/文创3.png",
+                "name": "华侨家书信封"
+              }
+            ],
+            "nextRec": {
+              "title": "🎯 下一站推荐",
+              "desc": "您今天深入了解了「园林动线设计」与「建筑本土化翻译」，关联推荐：<b>南岭国家森林公园</b>（亚热带原始森林的自然与建筑共生之旅）。"
+            }
+          }
+        },
+        {
+          "thumb": "🏛",
+          "name": "西安古城墙 + 碑林",
+          "date": "2025.04.05 · 3 个点位 · 18 知识点",
+          "details": {
+            "guide": "李明 AI 陪同",
+            "timeline": [
+              {
+                "time": "09:00 — 11:00",
+                "place": "西安古城墙",
+                "desc": "城墙结构 · 城门故事 · 骑行体验"
+              },
+              {
+                "time": "11:30 — 13:00",
+                "place": "碑林博物馆",
+                "desc": "书法演变 · 石刻艺术 · 拓片工艺"
+              },
+              {
+                "time": "14:00 — 16:00",
+                "place": "书院门古街",
+                "desc": "文房四宝 · 民间书法 · 市井文化"
+              }
+            ],
+            "tags": [
+              "城墙防御",
+              "书法艺术",
+              "石刻文化",
+              "古都格局",
+              "唐代遗风"
+            ],
+            "hotTags": [
+              "城墙防御",
+              "书法艺术"
+            ],
+            "nextRec": {
+              "title": "🎯 下一站推荐",
+              "desc": "您对「古代城防」与「书法艺术」兴趣浓厚，推荐：<b>南京明城墙</b>（世界最长古城墙）与 <b>曲阜孔庙</b>（碑刻书法圣地）。"
+            }
+          }
+        }
+      ],
+      "archive": {
+        "identity": {
+          "role": "🏛️ 建筑学者",
+          "meta": "3天深度之旅",
+          "quote": "你触摸到了百年前的岭南温度"
+        },
+        "summaryImage": "assets/images/harvest/旅行总结分享.png",
+        "achievements": [
+          {
+            "icon": "🏗️",
+            "name": "碉楼防御结构",
+            "desc": "铁门·窄窗·射击孔的三重防御体系"
+          },
+          {
+            "icon": "🌊",
+            "name": "华侨下南洋史",
+            "desc": "从\"卖猪仔\"到\"金山伯\"的百年漂泊"
+          },
+          {
+            "icon": "🏛️",
+            "name": "中西建筑融合",
+            "desc": "希腊柱廊与岭南灰塑的碰撞"
+          },
+          {
+            "icon": "⚖️",
+            "name": "防御力学原理",
+            "desc": "厚墙窄窗如何抵御土匪与水患"
+          }
+        ],
+        "footprint": {
+          "total": 9,
+          "lit": 5,
+          "spots": [
+            {
+              "name": "自力村",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "立园",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "锦江里",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "马降龙",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "赤坎古镇",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "佛山祖庙",
+              "status": "待探索",
+              "lit": false
+            },
+            {
+              "name": "陈家祠",
+              "status": "待探索",
+              "lit": false
+            },
+            {
+              "name": "潮州古城",
+              "status": "待探索",
+              "lit": false
+            },
+            {
+              "name": "丹霞山",
+              "status": "待探索",
+              "lit": false
+            }
+          ]
+        },
+        "nextJourney": {
+          "label": "新身份解锁 · 自然观察员",
+          "title": "南岭国家森林公园",
+          "desc": "深入亚热带原始森林，探索瀑布群与珍稀动植物，感受自然与建筑的共生之美。",
+          "hints": [
+            "原始森林徒步与动植物观察",
+            "瀑布群地质科普",
+            "南岭山脉的生态环境"
+          ],
+          "btnText": "预约下次旅程",
+          "btnLink": "#pretrip"
+        }
+      },
+      "knowledgeTree": [
+        {
+          "province": "广东",
+          "spots": [
+            {
+              "name": "开平碉楼",
+              "tripDate": "2025.05.20",
+              "points": [
+                {
+                  "icon": "🏗️",
+                  "name": "碉楼防御结构",
+                  "desc": "铁门·窄窗·射击孔的三重防御体系，从一楼到顶楼的递进式安全设计",
+                  "tags": [
+                    "防御工事",
+                    "建筑"
+                  ]
+                },
+                {
+                  "icon": "🌊",
+                  "name": "华侨下南洋史",
+                  "desc": "从\"卖猪仔\"到\"金山伯\"的百年漂泊，碉楼是华侨寄钱回乡建造的家园",
+                  "tags": [
+                    "历史",
+                    "华侨"
+                  ]
+                },
+                {
+                  "icon": "🏛️",
+                  "name": "中西建筑融合",
+                  "desc": "希腊柱廊与岭南灰塑的碰撞，罗马拱券与传统天井的并存",
+                  "tags": [
+                    "建筑",
+                    "文化交融"
+                  ]
+                },
+                {
+                  "icon": "⚖️",
+                  "name": "防御力学原理",
+                  "desc": "厚墙窄窗如何抵御土匪与水患，力学结构中的生存智慧",
+                  "tags": [
+                    "科学",
+                    "防御"
+                  ]
+                },
+                {
+                  "icon": "🧱",
+                  "name": "材料演变",
+                  "desc": "从夯土到青砖再到进口水泥，建筑材料折射时代变迁",
+                  "tags": [
+                    "材料",
+                    "贸易"
+                  ]
+                },
+                {
+                  "icon": "🌍",
+                  "name": "全球拼贴",
+                  "desc": "铁窗来自英国、水泥来自瑞典、瓷砖来自日本，一栋楼就是一部全球贸易史",
+                  "tags": [
+                    "贸易",
+                    "全球化"
+                  ]
+                },
+                {
+                  "icon": "📐",
+                  "name": "聚落布局",
+                  "desc": "碉楼群的选址逻辑：背山面田、互为犄角、视线通联",
+                  "tags": [
+                    "规划",
+                    "防御"
+                  ]
+                },
+                {
+                  "icon": "🤝",
+                  "name": "契约精神",
+                  "desc": "建造碉楼的\"契约碑\"记录了华侨与乡民的共建协议",
+                  "tags": [
+                    "历史",
+                    "社会"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "赤坎古镇",
+              "tripDate": "2025.05.20",
+              "points": [
+                {
+                  "icon": "🏘️",
+                  "name": "骑楼建筑",
+                  "desc": "连续廊柱形成的骑楼街，遮风挡雨的岭南商业建筑智慧",
+                  "tags": [
+                    "建筑",
+                    "岭南"
+                  ]
+                },
+                {
+                  "icon": "🎭",
+                  "name": "岭南商贸文化",
+                  "desc": "百年商埠的兴衰故事，从水路要道到文旅地标的转变",
+                  "tags": [
+                    "历史",
+                    "商贸"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "province": "陕西",
+          "spots": [
+            {
+              "name": "西安古城墙",
+              "tripDate": "2025.04.05",
+              "points": [
+                {
+                  "icon": "🏰",
+                  "name": "城墙防御体系",
+                  "desc": "瓮城、角楼、马面的立体防御网络，冷兵器时代的城防巅峰",
+                  "tags": [
+                    "防御",
+                    "建筑"
+                  ]
+                },
+                {
+                  "icon": "🚪",
+                  "name": "城门故事",
+                  "desc": "永宁门、含光门…每座城门背后的历史事件与命名逻辑",
+                  "tags": [
+                    "历史",
+                    "文化"
+                  ]
+                },
+                {
+                  "icon": "🚴",
+                  "name": "城墙骑行",
+                  "desc": "13.7公里环城骑行，从高处俯瞰古城格局与现代城市肌理",
+                  "tags": [
+                    "体验",
+                    "城市"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "碑林博物馆",
+              "tripDate": "2025.04.05",
+              "points": [
+                {
+                  "icon": "✍️",
+                  "name": "书法演变",
+                  "desc": "从篆隶到楷行的千年脉络，碑刻是书法最忠实的载体",
+                  "tags": [
+                    "书法",
+                    "艺术"
+                  ]
+                },
+                {
+                  "icon": "🪨",
+                  "name": "石刻艺术",
+                  "desc": "石台孝经、开成石经…碑林中的国宝级石刻群",
+                  "tags": [
+                    "艺术",
+                    "石刻"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "province": "江苏",
+          "spots": [
+            {
+              "name": "拙政园",
+              "tripDate": "2025.03.12",
+              "points": [
+                {
+                  "icon": "🌳",
+                  "name": "造园理念",
+                  "desc": "\"虽由人作，宛自天开\"——中国园林追求的自然哲学",
+                  "tags": [
+                    "园林",
+                    "哲学"
+                  ]
+                },
+                {
+                  "icon": "🪟",
+                  "name": "借景手法",
+                  "desc": "借远山、借塔影、借四季，园林的视觉边界如何被打破",
+                  "tags": [
+                    "园林",
+                    "设计"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "留园",
+              "tripDate": "2025.03.12",
+              "points": [
+                {
+                  "icon": "🏛️",
+                  "name": "空间序列",
+                  "desc": "收→放→收的空间节奏，移步换景的动线设计",
+                  "tags": [
+                    "园林",
+                    "空间"
+                  ]
+                },
+                {
+                  "icon": "🗿",
+                  "name": "冠云峰",
+                  "desc": "太湖石的审美标准：瘦、透、漏、皱",
+                  "tags": [
+                    "艺术",
+                    "园林"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "lin": {
+    "id": "lin",
+    "name": "林女士",
+    "avatarLabel": "林",
+    "pretrip": {
+      "agentName": "旅行专属定制师",
+      "checklistMap": {
+        "show": 5,
+        "active0": 5,
+        "done0": 13,
+        "active1": 13,
+        "done1": 19,
+        "active2": 19,
+        "done2": 22,
+        "active3": 23,
+        "done3": 28,
+        "active4": 28,
+        "done4": 32
+      },
+      "guideTier": null,
+      "selectedGuideId": null,
+      "guideTiers": [
+        {
+          "id": "ai-free",
+          "name": "AI导游",
+          "price": "免费",
+          "badge": "多款分身可选",
+          "image": "assets/images/pretrip/guide-tier-ai.jpg",
+          "highlights": "全部免费 · 知识库全覆盖 · 可查看详情后自选",
+          "witty": ""
+        },
+        {
+          "id": "human-remote",
+          "name": "著名AI导游数字分身",
+          "price": "¥35 起/天",
+          "originalPrice": "",
+          "badge": "明星导游复刻",
+          "image": "assets/images/pretrip/guide-tier-human.jpg",
+          "avatar": "assets/guides/wangjianguo.jpg",
+          "highlights": "35–60 元/天 · 名导风格深度复刻 · 可查看详情后自选",
+          "witty": "「乐乐，这碉楼比城堡还结实，土匪来了都得排队」"
+        }
+      ],
+      "humanGuide": {
+        "id": "chen-remote",
+        "name": "陈大嘴",
+        "avatar": "assets/guides/chen-remote.jpg",
+        "price": "¥30/天",
+        "originalPrice": "",
+        "tags": [
+          "金牌导游",
+          "诙谐灵魂",
+          "远程视频"
+        ],
+        "pitchByUser": {
+          "zhang": {
+            "witty": "「这楼比我家装修还讲究，就是没电梯」",
+            "bio": "前开平景区金牌讲解，转型远程视频带团后已服务860+组客人。专讲建筑结构、摄影机位和华侨冷知识，说话像脱口秀却句句有料。可实时视频答疑，按你的节奏找机位、听故事，比景区固定讲解更灵活自由。"
+          },
+          "lin": {
+            "witty": "「乐乐，这碉楼比城堡还结实，土匪来了都得排队」",
+            "bio": "十年亲子导览经验，远程视频带娃完成碉楼任务卡是拿手项。善于把建筑与华侨故事变成孩子爱听的冒险台词，节奏配合午睡与用餐。妈妈省力、孩子专注，适合第一次来开平、想先体验亲子远程带团的家庭。"
+          }
+        }
+      },
+      "itinerary": {
+        "title": "🧳 开平碉楼 · 2.5 天亲子定制行程卡",
+        "hotel": {
+          "name": "竹下民宿（亲子天台景观房）",
+          "price": "¥520/晚 × 2晚",
+          "note": "含儿童洗漱用品"
+        },
+        "train": [
+          {
+            "label": "去程 G6048",
+            "detail": "深圳北 17:38 → 开平南 20:23"
+          },
+          {
+            "label": "返程 G6047",
+            "detail": "开平南 18:05 → 深圳北 20:42"
+          }
+        ],
+        "ticket": {
+          "desc": "开平碉楼联票 ×2 大 1 小",
+          "price": "¥220 · 2 日有效",
+          "note": "小孩 8 岁免门票（1.2m 以下）"
+        },
+        "route": [
+          {
+            "day": "Day1 周五",
+            "detail": "抵达 → 民宿 → 天台夜景"
+          },
+          {
+            "day": "Day2 周六",
+            "detail": "自力村(早) → 午休 → 马降龙 → 赤坎夜游"
+          },
+          {
+            "day": "Day3 周日",
+            "detail": "立园(早) → 古镇午餐 → 返程"
+          }
+        ],
+        "checklist": [
+          "儿童防晒帽",
+          "驱蚊液/贴",
+          "小风扇",
+          "创可贴",
+          "备用袜子",
+          "紧急联系卡",
+          "便携零食",
+          "湿巾"
+        ]
+      },
+      "groupTourFile": "group-tour/lin-tour.json"
+    },
+    "during": {
+      "guideMode": "ai",
+      "agentName": "张雅芳AI",
+      "guideAvatar": "assets/images/personas/导游-张.png",
+      "guideTag": "开平碉楼 · 亲子导览 · 自力村探索中",
+      "guideWeixin": "wxid_zhangyafang2025",
+      "guidePhone": "138-2555-1950",
+      "stops": [
+        {
+          "name": "民宿天台",
+          "time": "20:45",
+          "range": "第一晚 · 抵达后",
+          "detail": "碉楼小侦探任务卡预告 · 行程确认",
+          "chatStartIndex": 0
+        },
+        {
+          "name": "自力村碉楼群",
+          "time": "09:00",
+          "range": "次日上午 · 清晨出发",
+          "detail": "稻田城堡侦查任务 · 找燕子窝瞭望小阳台",
+          "chatStartIndex": 14
+        },
+        {
+          "name": "民宿午休",
+          "time": "12:00",
+          "range": "次日中午 · 回民宿",
+          "detail": "午餐 · 休息充电",
+          "chatStartIndex": 42
+        },
+        {
+          "name": "马降龙竹林",
+          "time": "14:00",
+          "range": "次日下午 · 竹林探险",
+          "detail": "竹林秘境隐藏任务 · 躲猫猫碉楼",
+          "chatStartIndex": 45
+        },
+        {
+          "name": "赤坎古镇",
+          "time": "18:00",
+          "range": "次日晚上 · 夜游",
+          "detail": "古镇星光打卡任务 · 发光骑楼 · 英雄小楼",
+          "chatStartIndex": 51
+        }
+      ],
+      "facilities": [
+        {
+          "stopId": "zili",
+          "title": "亲子服务 · 休息安全",
+          "personaTag": "带娃出行",
+          "items": [
+            {
+              "id": "shade-rest",
+              "name": "铭石楼旁遮阳亭",
+              "desc": "有座椅和洗手台，乐乐跑累了可以在这里补水",
+              "image": "assets/images/during/facility-lin-rest.jpg",
+              "audio": "assets/audios/during/lin/facility-zili.mp3"
+            },
+            {
+              "id": "child-wash",
+              "name": "儿童洗手点（村口服务点）",
+              "desc": "田埂玩后方便清洁，旁边有急救箱",
+              "image": "assets/images/during/facility-lin-rest.jpg",
+              "audio": "assets/audios/during/lin/facility-zili.mp3"
+            }
+          ]
+        },
+        {
+          "stopId": "rest",
+          "title": "亲子服务 · 午间休整",
+          "personaTag": "带娃出行",
+          "items": [
+            {
+              "id": "nap-room",
+              "name": "民宿亲子午休角",
+              "desc": "回民宿后有安静房间，适合乐乐睡午觉",
+              "image": "assets/images/during/facility-lin-rest.jpg",
+              "audio": "assets/audios/during/lin/facility-zili.mp3"
+            },
+            {
+              "id": "stroller",
+              "name": "无障碍坡道入口",
+              "desc": "民宿至景区接驳点可推婴儿车，不用抬车",
+              "image": "assets/images/during/facility-lin-rest.jpg",
+              "audio": "assets/audios/during/lin/facility-zili.mp3"
+            }
+          ]
+        },
+        {
+          "stopId": "meal",
+          "title": "午餐前 · 煲仔饭故事",
+          "personaTag": "带娃出行",
+          "items": [
+            {
+              "id": "claypot-story",
+              "name": "碉楼农庄煲仔饭",
+              "desc": "瓦煲现做，米饭吸满黄鳝鲜味，开平非遗手艺",
+              "image": "assets/images/during/facility-lin-meal.jpg",
+              "audio": "assets/audios/during/lin/facility-meal.mp3"
+            },
+            {
+              "id": "child-menu",
+              "name": "儿童餐椅与半份菜",
+              "desc": "农庄提供宝宝椅，可点半份豆腐角",
+              "image": "assets/images/during/facility-lin-meal.jpg",
+              "audio": "assets/audios/during/lin/facility-meal.mp3"
+            }
+          ]
+        },
+        {
+          "stopId": "chikan",
+          "title": "夜游 · 亲子友好",
+          "personaTag": "带娃出行",
+          "items": [
+            {
+              "id": "night-snack",
+              "name": "骑楼小吃街（低辣）",
+              "desc": "豆腐花、双皮奶适合小朋友，灯光柔和不刺眼",
+              "image": "assets/images/during/facility-lin-night.jpg",
+              "audio": "assets/audios/during/lin/facility-chikan.mp3"
+            },
+            {
+              "id": "stroller-path",
+              "name": "推车友好夜游路线",
+              "desc": "主街石板路较平，避开北门台阶段即可",
+              "image": "assets/images/during/facility-lin-night.jpg",
+              "audio": "assets/audios/during/lin/facility-chikan.mp3"
+            }
+          ]
+        }
+      ],
+      "culturePopup": {
+        "title": "把开平带回家",
+        "subtitle": "亲子纪念 · 景区官方文创",
+        "heroImage": "assets/images/during/culture-souvenir-hero.jpg",
+        "products": [
+          "kp03",
+          "kp06",
+          "kp04"
+        ],
+        "audio": "assets/audios/during/lin/culture-end.mp3",
+        "introTextFile": "culture/lin-intro.txt"
+      }
+    },
+    "harvest": {
+      "current": {
+        "photoWall": {
+          "images": [
+            "assets/images/harvest/f1ce8ca8-0fcb-44aa-ad83-dbe359b44ead.png"
+          ]
+        },
+        "momentText": "孩子眼里的碉楼，比课本更生动。每一扇窗都是侦探任务的线索，每一片竹林都藏着自然的秘密。📍开平·亲子探索之旅",
+        "video": {
+          "thumbnail": "assets/images/harvest/旅行总结分享.png",
+          "duration": "01:58",
+          "src": "assets/videos/harvest-trip.mp4"
+        },
+        "tasks": {
+          "completed": 4,
+          "total": 5,
+          "list": [
+            {
+              "name": "稻田城堡侦查任务",
+              "done": true
+            },
+            {
+              "name": "竹林秘境隐藏任务",
+              "done": true
+            },
+            {
+              "name": "古镇星光打卡任务",
+              "done": true
+            },
+            {
+              "name": "立园建筑找不同",
+              "done": true
+            },
+            {
+              "name": "侨乡美食探索",
+              "done": false
+            }
+          ]
+        }
+      },
+      "stats": {
+        "trips": 3,
+        "knowledge": 56,
+        "cities": 8,
+        "chats": 142
+      },
+      "trips": [
+        {
+          "thumb": "碉",
+          "name": "开平碉楼亲子探索之旅",
+          "date": "2025.05.20 · 5 个点位 · 24 知识点",
+          "details": {
+            "guide": "张雅芳 AI 亲子导览",
+            "summaryImage": "assets/images/harvest/旅行总结分享.png",
+            "timeline": [
+              {
+                "time": "第一晚 · 抵达后",
+                "place": "民宿天台",
+                "desc": "碉楼小侦探任务卡预告 · 行程确认"
+              },
+              {
+                "time": "次日上午 · 清晨",
+                "place": "自力村碉楼群",
+                "desc": "稻田城堡侦查任务 · 找燕子窝瞭望小阳台"
+              },
+              {
+                "time": "次日中午",
+                "place": "民宿午休",
+                "desc": "午餐 · 休息充电"
+              },
+              {
+                "time": "次日下午",
+                "place": "马降龙竹林",
+                "desc": "竹林秘境隐藏任务 · 躲猫猫碉楼"
+              },
+              {
+                "time": "次日晚上",
+                "place": "赤坎古镇",
+                "desc": "古镇星光打卡任务 · 发光骑楼 · 英雄小楼"
+              }
+            ],
+            "tags": [
+              "华侨建筑",
+              "亲子教育",
+              "打卡探险",
+              "明信片城堡",
+              "竹林生态",
+              "松鼠投喂",
+              "古镇美食",
+              "非遗体验",
+              "防洪智慧",
+              "乡土中国",
+              "海外贸易",
+              "儿童观察"
+            ],
+            "hotTags": [
+              "华侨建筑",
+              "亲子教育",
+              "打卡探险"
+            ],
+            "nextRec": {
+              "title": "🎯 下一站亲子推荐",
+              "desc": "您和孩子今天深入体验了「建筑观察」与「自然探索」，关联推荐：<b>南岭国家森林公园</b>（原始森林亲子探险与珍稀动植物观察）。"
+            }
+          }
+        },
+        {
+          "thumb": "🏖",
+          "name": "厦门鼓浪屿家庭漫游",
+          "date": "2025.02.08 · 4 个点位 · 19 知识点",
+          "details": {
+            "guide": "陈静 AI 亲子导览",
+            "timeline": [
+              {
+                "time": "09:00 — 11:00",
+                "place": "日光岩",
+                "desc": "鼓浪屿全景 · 地质科普 · 登高望远"
+              },
+              {
+                "time": "11:30 — 13:00",
+                "place": "龙头路美食街",
+                "desc": "闽南小吃 · 馅饼制作 · 海鲜文化"
+              },
+              {
+                "time": "13:30 — 15:00",
+                "place": "钢琴博物馆",
+                "desc": "百年钢琴史 · 音乐互动 · 琴岛故事"
+              },
+              {
+                "time": "15:30 — 17:00",
+                "place": "菽庄花园",
+                "desc": "藏海巧思 · 十二洞天 · 儿童迷宫"
+              }
+            ],
+            "tags": [
+              "海岛文化",
+              "闽南建筑",
+              "音乐历史",
+              "地质科普",
+              "美食探索",
+              "园林巧思"
+            ],
+            "hotTags": [
+              "海岛文化",
+              "音乐历史",
+              "闽南建筑"
+            ],
+            "nextRec": {
+              "title": "🎯 下一站亲子推荐",
+              "desc": "您全家对「海岛文化」与「音乐历史」兴趣浓厚，推荐：<b>青岛八大关</b>（万国建筑亲子游）与 <b>哈尔滨音乐厅</b>（冰雪中的音乐课堂）。"
+            }
+          }
+        },
+        {
+          "thumb": "🌾",
+          "name": "阳朔田园骑行之旅",
+          "date": "2024.11.15 · 3 个点位 · 13 知识点",
+          "details": {
+            "guide": "黄磊 AI 陪同",
+            "timeline": [
+              {
+                "time": "09:00 — 11:30",
+                "place": "十里画廊",
+                "desc": "田园骑行 · 喀斯特地貌 · 农耕文化"
+              },
+              {
+                "time": "12:00 — 13:30",
+                "place": "遇龙河",
+                "desc": "竹筏漂流 · 水车原理 · 渔村故事"
+              },
+              {
+                "time": "14:30 — 16:00",
+                "place": "西街",
+                "desc": "阳朔历史 · 国际文化 · 手工艺品"
+              }
+            ],
+            "tags": [
+              "喀斯特地貌",
+              "田园文化",
+              "骑行探索",
+              "水车科学",
+              "渔村生活",
+              "国际交融"
+            ],
+            "hotTags": [
+              "喀斯特地貌",
+              "田园文化"
+            ],
+            "nextRec": {
+              "title": "🎯 下一站亲子推荐",
+              "desc": "您全家对「自然探索」与「户外运动」充满热情，推荐：<b>张家界</b>（地质奇观亲子探险）与 <b>大理洱海</b>（环湖骑行与白族文化）。"
+            }
+          }
+        }
+      ],
+      "knowledgeTree": [
+        {
+          "province": "广东",
+          "spots": [
+            {
+              "name": "开平碉楼",
+              "tripDate": "2025.05.20",
+              "points": [
+                {
+                  "icon": "🔍",
+                  "name": "碉楼侦探任务",
+                  "desc": "发现枪眼、女儿墙与中西混搭的建筑秘密，像侦探一样观察细节",
+                  "tags": [
+                    "观察",
+                    "建筑"
+                  ]
+                },
+                {
+                  "icon": "🧱",
+                  "name": "材料摸摸看",
+                  "desc": "亲手触摸夯土墙与进口铁窗，感受本地材料与远洋贸易的连接",
+                  "tags": [
+                    "材料",
+                    "体验"
+                  ]
+                },
+                {
+                  "icon": "🌿",
+                  "name": "竹林生态探索",
+                  "desc": "马降龙竹荫下的光影与声音地图，认识竹林中的小生物",
+                  "tags": [
+                    "自然",
+                    "生态"
+                  ]
+                },
+                {
+                  "icon": "🎨",
+                  "name": "建筑找不同",
+                  "desc": "在立园发现中式飞檐与西式拱门的趣味碰撞",
+                  "tags": [
+                    "建筑",
+                    "观察"
+                  ]
+                },
+                {
+                  "icon": "🏡",
+                  "name": "垂直村落",
+                  "desc": "碉楼里的生活空间：厨房、卧室、粮仓，一栋楼就是一个小村庄",
+                  "tags": [
+                    "生活",
+                    "建筑"
+                  ]
+                },
+                {
+                  "icon": "🗺️",
+                  "name": "声音地图",
+                  "desc": "用耳朵记录旅途：竹叶沙沙、溪水潺潺、鸟鸣啾啾",
+                  "tags": [
+                    "自然",
+                    "体验"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "赤坎古镇",
+              "tripDate": "2025.05.20",
+              "points": [
+                {
+                  "icon": "🌃",
+                  "name": "古镇夜游",
+                  "desc": "灯光亮起时的骑楼街，百年老建筑在夜色中焕发新生",
+                  "tags": [
+                    "建筑",
+                    "体验"
+                  ]
+                },
+                {
+                  "icon": "🍜",
+                  "name": "岭南美食文化",
+                  "desc": "黄鳝饭、豆腐角…每一道菜背后都是侨乡人的乡愁",
+                  "tags": [
+                    "美食",
+                    "文化"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "province": "福建",
+          "spots": [
+            {
+              "name": "鼓浪屿",
+              "tripDate": "2025.02.08",
+              "points": [
+                {
+                  "icon": "🌊",
+                  "name": "海岛地质",
+                  "desc": "日光岩的火山岩地貌，海浪侵蚀形成的海蚀洞穴",
+                  "tags": [
+                    "地质",
+                    "自然"
+                  ]
+                },
+                {
+                  "icon": "🎹",
+                  "name": "琴岛音乐史",
+                  "desc": "钢琴博物馆里的百年琴声，鼓浪屿为何被称为\"音乐之岛\"",
+                  "tags": [
+                    "音乐",
+                    "历史"
+                  ]
+                },
+                {
+                  "icon": "🏘️",
+                  "name": "万国建筑博览",
+                  "desc": "13国领事馆旧址，一栋楼一个国家的建筑故事",
+                  "tags": [
+                    "建筑",
+                    "历史"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "province": "广西",
+          "spots": [
+            {
+              "name": "阳朔",
+              "tripDate": "2024.11.15",
+              "points": [
+                {
+                  "icon": "🏔️",
+                  "name": "喀斯特地貌",
+                  "desc": "亿万年水流雕刻的峰林，像一幅流动的水墨长卷",
+                  "tags": [
+                    "地质",
+                    "自然"
+                  ]
+                },
+                {
+                  "icon": "⛵",
+                  "name": "水车科学",
+                  "desc": "遇龙河畔的古老水车，杠杆原理与水流力量的巧妙结合",
+                  "tags": [
+                    "科学",
+                    "农业"
+                  ]
+                },
+                {
+                  "icon": "🎭",
+                  "name": "国际交融",
+                  "desc": "西街的多元文化碰撞，从渔村到国际旅游名镇的故事",
+                  "tags": [
+                    "文化",
+                    "历史"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "archive": {
+        "identity": {
+          "role": "👨‍👩‍👧 亲子探险家",
+          "meta": "2.5天家庭之旅",
+          "quote": "孩子眼里的碉楼，比课本更生动"
+        },
+        "summaryImage": "assets/images/harvest/旅行总结分享.png",
+        "achievements": [
+          {
+            "icon": "🔍",
+            "name": "碉楼侦探任务",
+            "desc": "发现枪眼、女儿墙与中西混搭的秘密"
+          },
+          {
+            "icon": "🧱",
+            "name": "材料摸摸看",
+            "desc": "夯土墙与进口铁窗的触感对比"
+          },
+          {
+            "icon": "🌿",
+            "name": "竹林生态探索",
+            "desc": "马降龙竹荫下的光影与声音地图"
+          },
+          {
+            "icon": "🎨",
+            "name": "建筑找不同",
+            "desc": "在立园发现中式与西式的趣味碰撞"
+          }
+        ],
+        "footprint": {
+          "total": 9,
+          "lit": 5,
+          "spots": [
+            {
+              "name": "自力村",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "立园",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "锦江里",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "马降龙",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "赤坎古镇",
+              "status": "已点亮",
+              "lit": true
+            },
+            {
+              "name": "佛山祖庙",
+              "status": "待探索",
+              "lit": false
+            },
+            {
+              "name": "陈家祠",
+              "status": "待探索",
+              "lit": false
+            },
+            {
+              "name": "潮州古城",
+              "status": "待探索",
+              "lit": false
+            },
+            {
+              "name": "丹霞山",
+              "status": "待探索",
+              "lit": false
+            }
+          ]
+        },
+        "nextJourney": {
+          "label": "新身份解锁 · 自然探险家",
+          "title": "南岭国家森林公园亲子游",
+          "desc": "和孩子一起深入原始森林，探索瀑布群、观察珍稀动植物，在自然中开启亲子探险之旅。",
+          "hints": [
+            "原始森林亲子徒步",
+            "珍稀动植物科普课堂",
+            "瀑布群自然探险"
+          ],
+          "btnText": "预约下次旅程",
+          "btnLink": "#pretrip"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "format": "chapter-v1",
+  "chapters": [
+    {
+      "title": "场景零：第一晚 · 民宿天台（20:45）",
+      "file": "during/lin/00-民宿天台.txt",
+      "messages": [
+        {
+          "sender": "system",
+          "time": "20:45"
+        },
+        {
+          "sender": "ai",
+          "time": "20:45"
+        },
+        {
+          "sender": "user",
+          "time": "20:46",
+          "userName": "林女士"
+        },
+        {
+          "sender": "ai",
+          "time": "20:46"
+        },
+        {
+          "sender": "ai",
+          "time": "20:47",
+          "skipTurn": true,
+          "text": "",
+          "html": "during/lin/004-html.txt"
+        },
+        {
+          "sender": "ai",
+          "time": "20:47"
+        },
+        {
+          "sender": "user",
+          "time": "20:48",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "20:48"
+        },
+        {
+          "sender": "user",
+          "time": "20:49",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "20:49"
+        },
+        {
+          "sender": "user",
+          "time": "20:50",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "20:51"
+        },
+        {
+          "sender": "user",
+          "time": "20:52",
+          "userName": "林女士"
+        },
+        {
+          "sender": "ai",
+          "time": "20:53"
+        }
+      ]
+    },
+    {
+      "title": "场景一：自力村碉楼群（09:00-11:30）",
+      "file": "during/lin/01-自力村.txt",
+      "messages": [
+        {
+          "sender": "system",
+          "time": "09:00",
+          "location": "自力村"
+        },
+        {
+          "sender": "ai",
+          "time": "09:00"
+        },
+        {
+          "sender": "ai",
+          "time": "09:00",
+          "facilityStop": "zili",
+          "skipTurn": true,
+          "text": ""
+        },
+        {
+          "sender": "ai",
+          "time": "09:00"
+        },
+        {
+          "sender": "user",
+          "time": "09:01",
+          "userName": "林女士"
+        },
+        {
+          "sender": "ai",
+          "time": "09:02"
+        },
+        {
+          "sender": "user",
+          "time": "09:02",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "09:03"
+        },
+        {
+          "sender": "user",
+          "time": "09:04",
+          "userName": "林女士"
+        },
+        {
+          "sender": "ai",
+          "time": "09:04"
+        },
+        {
+          "sender": "user",
+          "time": "09:05",
+          "userName": "林女士"
+        },
+        {
+          "sender": "user",
+          "time": "09:05",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "09:06"
+        },
+        {
+          "sender": "user",
+          "time": "09:06",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "09:07"
+        },
+        {
+          "sender": "user",
+          "time": "09:08",
+          "userName": "林女士"
+        },
+        {
+          "sender": "ai",
+          "time": "09:08"
+        },
+        {
+          "sender": "user",
+          "time": "09:09",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "09:09"
+        },
+        {
+          "sender": "user",
+          "time": "09:10",
+          "userName": "林女士"
+        },
+        {
+          "sender": "ai",
+          "time": "09:11"
+        },
+        {
+          "sender": "system",
+          "time": "09:13",
+          "location": "自力村"
+        },
+        {
+          "sender": "ai",
+          "time": "09:13"
+        },
+        {
+          "sender": "user",
+          "time": "09:14",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "09:14"
+        },
+        {
+          "sender": "user",
+          "time": "09:15",
+          "userName": "林女士"
+        },
+        {
+          "sender": "ai",
+          "time": "09:16"
+        },
+        {
+          "sender": "user",
+          "time": "09:16",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "09:17"
+        },
+        {
+          "sender": "user",
+          "time": "09:17",
+          "userName": "林女士"
+        },
+        {
+          "sender": "ai",
+          "time": "09:18"
+        },
+        {
+          "sender": "user",
+          "time": "09:19",
+          "userName": "林女士"
+        }
+      ]
+    },
+    {
+      "title": "场景二：午餐预告 + 午间休整（11:30-13:30）",
+      "file": "during/lin/02-午餐休整.txt",
+      "messages": [
+        {
+          "sender": "system",
+          "time": "09:19"
+        },
+        {
+          "sender": "ai",
+          "time": "09:19"
+        },
+        {
+          "sender": "ai",
+          "time": "09:19",
+          "facilityStop": "meal",
+          "skipTurn": true,
+          "text": ""
+        },
+        {
+          "sender": "ai",
+          "time": "09:20"
+        },
+        {
+          "sender": "system",
+          "time": "09:21"
+        },
+        {
+          "sender": "ai",
+          "time": "09:21"
+        },
+        {
+          "sender": "ai",
+          "time": "09:21",
+          "facilityStop": "rest",
+          "skipTurn": true,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "title": "场景三：马降龙竹林（14:00-16:00）",
+      "file": "during/lin/03-马降龙.txt",
+      "messages": [
+        {
+          "sender": "system",
+          "time": "14:00",
+          "location": "马降龙"
+        },
+        {
+          "sender": "ai",
+          "time": "14:00"
+        },
+        {
+          "sender": "user",
+          "time": "14:01",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "14:01"
+        },
+        {
+          "sender": "user",
+          "time": "14:02",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "14:02"
+        }
+      ]
+    },
+    {
+      "title": "场景四：赤坎古镇夜景（18:00）",
+      "file": "during/lin/04-赤坎古镇.txt",
+      "messages": [
+        {
+          "sender": "system",
+          "time": "18:00",
+          "location": "赤坎古镇"
+        },
+        {
+          "sender": "ai",
+          "time": "18:00"
+        },
+        {
+          "sender": "ai",
+          "time": "18:00",
+          "facilityStop": "chikan",
+          "skipTurn": true,
+          "text": ""
+        },
+        {
+          "sender": "ai",
+          "time": "18:00"
+        },
+        {
+          "sender": "user",
+          "time": "18:01",
+          "userName": "乐乐"
+        },
+        {
+          "sender": "ai",
+          "time": "18:01"
+        },
+        {
+          "sender": "user",
+          "time": "18:02",
+          "userName": "林女士"
+        },
+        {
+          "sender": "ai",
+          "time": "18:03"
+        }
+      ]
+    }
+  ]
+}

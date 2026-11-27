@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "base": "assets/content/",
+  "pretrip": {
+    "zhang": "pretrip/zhang-script.json",
+    "lin": "pretrip/lin-script.json"
+  },
+  "during": {
+    "zhang": "during/zhang-chapters.json",
+    "lin": "during/lin-chapters.json"
+  },
+  "guides": {
+    "zhang": {
+      "ai": "guides/zhang-ai.json",
+      "human": "guides/zhang-human.json"
+    },
+    "lin": {
+      "ai": "guides/lin-ai.json",
+      "human": "guides/lin-human.json"
+    }
+  },
+  "humanGuide": {
+    "zhang": {
+      "wittyFile": "human-guide/zhang-witty.txt",
+      "bioFile": "human-guide/zhang-pitch-bio.txt"
+    },
+    "lin": {
+      "wittyFile": "human-guide/lin-witty.txt",
+      "bioFile": "human-guide/lin-pitch-bio.txt"
+    }
+  },
+  "meta": {
+    "yearsExp": "guides/meta/years-exp.json",
+    "mottos": "guides/meta/mottos.json"
+  },
+  "culture": {
+    "zhang": "culture/zhang-intro.txt",
+    "lin": "culture/lin-intro.txt"
+  },
+  "groupTour": {
+    "lin": "group-tour/lin-tour.json"
+  },
+  "users": "users/meta.json",
+  "format": "chapter-v1"
+}

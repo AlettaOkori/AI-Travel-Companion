@@ -1,0 +1,147 @@
+[
+  {
+    "id": "zhangyafang",
+    "name": "张雅芳 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "recommended": true,
+    "avatar": "assets/images/personas/导游-张.png",
+    "matchScore": 99,
+    "rating": 4.9,
+    "serviceCount": 1800,
+    "tags": [
+      "亲子专家",
+      "故事达人",
+      "互动游戏"
+    ],
+    "style": "冒险地图 · 任务卡驱动",
+    "specialties": [
+      "亲子互动",
+      "故事讲解",
+      "任务卡设计",
+      "儿童摄影"
+    ],
+    "bioFile": "guides/ai/zhangyafang-bio.txt"
+  },
+  {
+    "id": "liuwenshan",
+    "name": "刘文山 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "avatar": "assets/guides/liuwenshan.jpg",
+    "matchScore": 97,
+    "rating": 4.6,
+    "serviceCount": 670,
+    "tags": [
+      "亲子故事王",
+      "自然教育",
+      "植物专家"
+    ],
+    "style": "自然寻宝 · 田野观察",
+    "specialties": [
+      "亲子自然课",
+      "植物观察",
+      "鸟类辨识",
+      "稻田研学"
+    ],
+    "bioFile": "guides/ai/liuwenshan-bio.txt"
+  },
+  {
+    "id": "zhangxiaoya",
+    "name": "张晓雅 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "avatar": "assets/guides/zhangxiaoya.jpg",
+    "matchScore": 93,
+    "rating": 4.8,
+    "serviceCount": 1560,
+    "tags": [
+      "趣味历史",
+      "美食家",
+      "本地通"
+    ],
+    "style": "童话叙事 · 生活趣味",
+    "specialties": [
+      "儿童故事",
+      "本地美食",
+      "手作体验",
+      "生活美学"
+    ],
+    "bioFile": "guides/ai/zhangxiaoya-bio.txt"
+  },
+  {
+    "id": "liweimin",
+    "name": "李伟民 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "avatar": "assets/guides/liweimin.jpg",
+    "matchScore": 89,
+    "rating": 4.7,
+    "serviceCount": 2100,
+    "tags": [
+      "历史达人",
+      "华侨故事",
+      "口述史"
+    ],
+    "style": "互动讲解 · 蹲下来讲故事",
+    "specialties": [
+      "华侨历史",
+      "口述史",
+      "村落探访",
+      "互动讲解"
+    ],
+    "bioFile": "guides/ai/liweimin-bio.txt"
+  },
+  {
+    "id": "chenyue",
+    "name": "陈月 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "avatar": "assets/guides/chenyue.jpg",
+    "matchScore": 80,
+    "rating": 4.8,
+    "serviceCount": 890,
+    "tags": [
+      "摄影师",
+      "光影魔术师",
+      "生活家"
+    ],
+    "style": "小小摄影师 · 任务卡",
+    "specialties": [
+      "儿童摄影课",
+      "光影游戏",
+      "任务卡设计",
+      "亲子拍照"
+    ],
+    "bioFile": "guides/ai/chenyue-bio.txt"
+  },
+  {
+    "id": "zhoumingxuan",
+    "name": "周明轩 AI",
+    "tier": "ai",
+    "price": 0,
+    "priceLabel": "免费",
+    "avatar": "assets/guides/zhoumingxuan.jpg",
+    "matchScore": 76,
+    "rating": 4.7,
+    "serviceCount": 930,
+    "tags": [
+      "文化学者",
+      "艺术启蒙",
+      "贴纸游戏"
+    ],
+    "style": "找不同 · 图案观察",
+    "specialties": [
+      "艺术启蒙",
+      "图案观察",
+      "贴纸游戏",
+      "文化对比"
+    ],
+    "bioFile": "guides/ai/zhoumingxuan-bio.txt"
+  }
+]

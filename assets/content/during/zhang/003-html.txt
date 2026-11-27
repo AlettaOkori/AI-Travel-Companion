@@ -1,0 +1,15 @@
+<div class="panorama-3d-card" onclick="openImagePreview('assets/images/during/zili-3d-panorama.png')" role="button" tabindex="0" aria-label="查看自力村碉楼群三维全景大图">
+  <div class="panorama-3d-head">
+    <span class="panorama-3d-badge">3D 全景</span>
+    <span class="panorama-3d-title">自力村防御排布</span>
+  </div>
+  <div class="panorama-3d-frame">
+    <img src="assets/images/during/zili-3d-panorama.png" alt="自力村碉楼群三维俯瞰：龙胜楼守正门，云幻楼卡西侧，居安楼盯东侧" loading="lazy" />
+  </div>
+  <div class="panorama-3d-legend">
+    <span class="panorama-3d-pin pin-gate">龙胜楼 · 正门</span>
+    <span class="panorama-3d-pin pin-west">云幻楼 · 西翼</span>
+    <span class="panorama-3d-pin pin-east">居安楼 · 东翼</span>
+  </div>
+  <div class="panorama-3d-hint">扫码加载 · 点击可放大</div>
+</div>

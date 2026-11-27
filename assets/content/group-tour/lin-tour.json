@@ -1,0 +1,28 @@
+{
+  "title": "组团同路 · 你的专属讲解",
+  "subtitle": "同一条路，不同旅伴听到不同故事",
+  "sharedRouteImage": "assets/images/pretrip/group-tour-shared.jpg",
+  "stops": [
+    {
+      "id": "zili",
+      "name": "自力村碉楼群",
+      "sharedNote": "世界遗产核心聚落 · 全员同站",
+      "audio": "assets/audios/pretrip/lin/zili.mp3",
+      "personalizedTextFile": "group-tour/lin/zili.txt"
+    },
+    {
+      "id": "ligarden",
+      "name": "立园",
+      "sharedNote": "中西合璧园林 · 全员同站",
+      "audio": "assets/audios/pretrip/lin/ligarden.mp3",
+      "personalizedTextFile": "group-tour/lin/ligarden.txt"
+    },
+    {
+      "id": "maganglong",
+      "name": "马降龙碉楼群",
+      "sharedNote": "竹林秘境 · 全员同站",
+      "audio": "assets/audios/pretrip/lin/maganglong.mp3",
+      "personalizedTextFile": "group-tour/lin/maganglong.txt"
+    }
+  ]
+}

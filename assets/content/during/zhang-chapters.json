@@ -1,0 +1,352 @@
+{
+  "format": "chapter-v1",
+  "chapters": [
+    {
+      "title": "场景一：自力村碉楼群（09:00-11:30）",
+      "file": "during/zhang/01-自力村.txt",
+      "messages": [
+        {
+          "sender": "ai",
+          "time": "09:15"
+        },
+        {
+          "sender": "system",
+          "time": "09:16"
+        },
+        {
+          "sender": "ai",
+          "time": "09:16",
+          "html": "during/zhang/003-html.txt"
+        },
+        {
+          "sender": "ai",
+          "time": "09:16",
+          "facilityStop": "zili",
+          "skipTurn": true,
+          "text": ""
+        },
+        {
+          "sender": "user",
+          "time": "09:16"
+        },
+        {
+          "sender": "ai",
+          "time": "09:16"
+        },
+        {
+          "sender": "user",
+          "time": "09:17"
+        },
+        {
+          "sender": "ai",
+          "time": "09:17",
+          "html": "during/zhang/018-html.txt"
+        },
+        {
+          "sender": "user",
+          "time": "09:19"
+        },
+        {
+          "sender": "ai",
+          "time": "09:20"
+        },
+        {
+          "sender": "user",
+          "time": "09:21"
+        },
+        {
+          "sender": "ai",
+          "time": "09:21"
+        },
+        {
+          "sender": "user",
+          "time": "09:22"
+        },
+        {
+          "sender": "ai",
+          "time": "09:23",
+          "html": "during/zhang/006-html.txt"
+        },
+        {
+          "sender": "user",
+          "time": "09:24"
+        },
+        {
+          "sender": "ai",
+          "time": "09:25",
+          "bookmark": "zili-coffee"
+        },
+        {
+          "sender": "user",
+          "time": "09:25"
+        },
+        {
+          "sender": "ai",
+          "time": "09:28"
+        },
+        {
+          "sender": "system",
+          "time": "09:29"
+        },
+        {
+          "sender": "ai",
+          "time": "09:32"
+        },
+        {
+          "sender": "user",
+          "time": "09:33"
+        },
+        {
+          "sender": "ai",
+          "time": "09:34"
+        },
+        {
+          "sender": "user",
+          "time": "09:35"
+        },
+        {
+          "sender": "ai",
+          "time": "09:36"
+        },
+        {
+          "sender": "user",
+          "time": "09:37"
+        }
+      ]
+    },
+    {
+      "title": "场景二：碉楼人家农庄 + 午餐休整（11:30-13:30）",
+      "file": "during/zhang/02-农庄午餐.txt",
+      "messages": [
+        {
+          "sender": "system",
+          "time": "11:30"
+        },
+        {
+          "sender": "ai",
+          "time": "11:32"
+        },
+        {
+          "sender": "user",
+          "time": "11:33"
+        },
+        {
+          "sender": "ai",
+          "time": "11:34",
+          "html": "during/zhang/031-html.txt"
+        },
+        {
+          "sender": "system",
+          "time": "11:45"
+        },
+        {
+          "sender": "ai",
+          "time": "11:46"
+        },
+        {
+          "sender": "user",
+          "time": "11:47"
+        },
+        {
+          "sender": "ai",
+          "time": "11:48"
+        },
+        {
+          "sender": "system",
+          "time": "12:30"
+        },
+        {
+          "sender": "ai",
+          "time": "13:10"
+        },
+        {
+          "sender": "user",
+          "time": "13:11"
+        },
+        {
+          "sender": "ai",
+          "time": "13:12"
+        },
+        {
+          "sender": "user",
+          "time": "13:13"
+        },
+        {
+          "sender": "ai",
+          "time": "13:14"
+        }
+      ]
+    },
+    {
+      "title": "场景三：立园（13:30-14:40）",
+      "file": "during/zhang/03-立园.txt",
+      "messages": [
+        {
+          "sender": "system",
+          "time": "13:30"
+        },
+        {
+          "sender": "ai",
+          "time": "13:30"
+        },
+        {
+          "sender": "user",
+          "time": "13:33"
+        },
+        {
+          "sender": "ai",
+          "time": "13:35",
+          "html": "during/zhang/047-html.txt"
+        },
+        {
+          "sender": "user",
+          "time": "13:36"
+        },
+        {
+          "sender": "ai",
+          "time": "13:42"
+        },
+        {
+          "sender": "user",
+          "time": "13:43"
+        },
+        {
+          "sender": "ai",
+          "time": "13:46"
+        },
+        {
+          "sender": "user",
+          "time": "13:47"
+        },
+        {
+          "sender": "ai",
+          "time": "13:55",
+          "html": "during/zhang/053-html.txt"
+        },
+        {
+          "sender": "user",
+          "time": "13:57"
+        },
+        {
+          "sender": "ai",
+          "time": "14:10"
+        },
+        {
+          "sender": "user",
+          "time": "14:12"
+        }
+      ]
+    },
+    {
+      "title": "场景四：马降龙碉楼群（14:40-16:00）",
+      "file": "during/zhang/04-马降龙.txt",
+      "messages": [
+        {
+          "sender": "system",
+          "time": "14:40"
+        },
+        {
+          "sender": "ai",
+          "time": "14:40"
+        },
+        {
+          "sender": "ai",
+          "time": "14:40",
+          "facilityStop": "maganglong",
+          "skipTurn": true,
+          "text": ""
+        },
+        {
+          "sender": "user",
+          "time": "14:41"
+        },
+        {
+          "sender": "ai",
+          "time": "14:42"
+        },
+        {
+          "sender": "user",
+          "time": "14:43"
+        },
+        {
+          "sender": "ai",
+          "time": "14:44"
+        },
+        {
+          "sender": "user",
+          "time": "14:44"
+        },
+        {
+          "sender": "ai",
+          "time": "14:45"
+        },
+        {
+          "sender": "user",
+          "time": "14:45"
+        },
+        {
+          "sender": "ai",
+          "time": "14:46"
+        },
+        {
+          "sender": "user",
+          "time": "14:47"
+        },
+        {
+          "sender": "ai",
+          "time": "14:48"
+        },
+        {
+          "sender": "user",
+          "time": "14:49"
+        },
+        {
+          "sender": "ai",
+          "time": "14:50"
+        },
+        {
+          "sender": "ai",
+          "time": "14:52"
+        }
+      ]
+    },
+    {
+      "title": "场景五：行程结束（16:00）",
+      "file": "during/zhang/05-行程结束.txt",
+      "messages": [
+        {
+          "sender": "system",
+          "time": "16:00"
+        },
+        {
+          "sender": "ai",
+          "time": "16:00"
+        },
+        {
+          "sender": "user",
+          "time": "16:01"
+        },
+        {
+          "sender": "ai",
+          "time": "16:02"
+        },
+        {
+          "sender": "user",
+          "time": "16:03"
+        },
+        {
+          "sender": "ai",
+          "time": "16:04"
+        },
+        {
+          "sender": "user",
+          "time": "16:05"
+        },
+        {
+          "sender": "ai",
+          "time": "16:06"
+        }
+      ]
+    }
+  ]
+}
